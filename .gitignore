@@ -21,3 +21,5 @@ DATA/
 *.preview.html
 __pycache__/
 .DS_Store
+guideline/**/*.pdf
+guideline/가이드라인*/
