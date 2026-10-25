@@ -1,0 +1,43 @@
+해외 지침 규칙 판정 (M03 CAP 2019 · M07 cUTI 2025) · 옵션: icu_severe=False class_equiv=False sepsis_broad_ok=False
+
+[pneumonia] n=4,875 · 해당 없음 135 · 판정 불가 629 · 판정된 4,111
+   준수(추천)          538 (13.1% of 판정된)
+   준수(대안)            8 (0.2% of 판정된)
+   비준수(누락)         214 (5.2% of 판정된)
+   비준수(과잉)         633 (15.4% of 판정된)
+   비준수(다른 약제)    2,718 (66.1% of 판정된)
+   준수율 = 546/4,111 = 13.3%  · 하한선(판정 불가=비준수) = 11.5%
+
+[uti] n=4,523 · 해당 없음 175 · 판정 불가 94 · 판정된 4,254
+   준수(추천)        1,657 (39.0% of 판정된)
+   준수(대안)           20 (0.5% of 판정된)
+   비준수(누락)           0 (0.0% of 판정된)
+   비준수(과잉)       2,119 (49.8% of 판정된)
+   비준수(다른 약제)      458 (10.8% of 판정된)
+   준수율 = 1,677/4,254 = 39.4%  · 하한선(판정 불가=비준수) = 38.6%
+
+[pneumonia] 시기별 준수율 (판정된 환자 기준)
+   2008 - 2010:  13.3%  (판정된 1,207 · 판정 불가 287)
+   2011 - 2013:   9.5%  (판정된 823 · 판정 불가 153)
+   2014 - 2016:  13.2%  (판정된 832 · 판정 불가 108)
+   2017 - 2019:  12.9%  (판정된 735 · 판정 불가 52)
+   2020 - 2022:  20.0%  (판정된 514 · 판정 불가 29)
+[pneumonia] 판정값별 상위 요법
+   준수(추천)       azithromycin + ceftriaxone (461) / levofloxacin (37) / ceftriaxone + levofloxacin (13) / azithromycin + cefepime + vancomycin (7)
+   준수(대안)       ceftriaxone + doxycycline (8)
+   비준수(과잉)      azithromycin + ceftriaxone + vancomycin (115) / azithromycin + cefepime + ceftriaxone + vancomycin (79) / azithromycin + ceftriaxone + piperacillin/tazobactam + vancomycin (40) / azithromycin + ceftriaxone + levofloxacin (34)
+   비준수(다른 약제)   cefepime + vancomycin (383) / piperacillin/tazobactam + vancomycin (273) / azithromycin + cefepime + vancomycin (172) / cefepime + metronidazole + vancomycin (131)
+   판정 불가        levofloxacin (181) / cefepime + levofloxacin + vancomycin (76) / levofloxacin + piperacillin/tazobactam + vancomycin (34) / levofloxacin + vancomycin (34)
+
+[uti] 시기별 준수율 (판정된 환자 기준)
+   2008 - 2010:  37.5%  (판정된 1,427 · 판정 불가 44)
+   2011 - 2013:  39.4%  (판정된 899 · 판정 불가 23)
+   2014 - 2016:  40.2%  (판정된 819 · 판정 불가 15)
+   2017 - 2019:  41.5%  (판정된 709 · 판정 불가 6)
+   2020 - 2022:  41.2%  (판정된 400 · 판정 불가 6)
+[uti] 판정값별 상위 요법
+   준수(추천)       ceftriaxone (876) / ciprofloxacin (395) / piperacillin/tazobactam (70) / cefepime (47)
+   준수(대안)       meropenem (8) / cefpodoxime (7) / amoxicillin/clavulanate (3) / cephalexin (2)
+   비준수(과잉)      piperacillin/tazobactam + vancomycin (219) / cefepime + vancomycin (195) / ceftriaxone + vancomycin (120) / cefepime + metronidazole + vancomycin (92)
+   비준수(다른 약제)   vancomycin (93) / nitrofurantoin (64) / cefazolin + vancomycin (59) / ampicillin/sulbactam (35)
+   판정 불가        trimethoprim/sulfamethoxazole (55) / meropenem (9) / cefpodoxime (6) / ciprofloxacin + trimethoprim/sulfamethoxazole (6)

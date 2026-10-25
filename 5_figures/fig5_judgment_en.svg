@@ -1,0 +1,153 @@
+<svg viewBox="0 0 1500 1010" xmlns="http://www.w3.org/2000/svg" role="img" font-family="Helvetica Neue, Arial, Noto Sans, Noto Sans CJK KR, sans-serif" font-size="11">
+<defs>
+  <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+  <marker id="arB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#185fa5"/></marker>
+  <marker id="arP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#534ab7"/></marker>
+  <marker id="arG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0f6e56"/></marker>
+  <marker id="arO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ba7517"/></marker>
+  <symbol id="i-db" viewBox="0 0 40 44"><ellipse cx="20" cy="8" rx="17" ry="6"/><path d="M3 8v28c0 3.3 7.6 6 17 6s17-2.7 17-6V8"/><path d="M3 22c0 3.3 7.6 6 17 6s17-2.7 17-6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 36 44"><path d="M4 2h18l10 10v30H4z"/><path d="M22 2v10h10"/><path d="M9 20h18M9 27h18M9 34h12"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 40 40"><circle cx="20" cy="20" r="7"/><path d="M20 3v6M20 31v6M3 20h6M31 20h6M8 8l4.3 4.3M27.7 27.7L32 32M8 32l4.3-4.3M27.7 12.3L32 8"/></symbol>
+  <symbol id="i-table" viewBox="0 0 44 36"><rect x="2" y="2" width="40" height="32" rx="3"/><path d="M2 12h40M2 23h40M16 2v32M30 2v32"/></symbol>
+  <symbol id="i-funnel" viewBox="0 0 40 40"><path d="M3 4h34L24 20v14l-8 4V20z"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 44 36"><rect x="8" y="6" width="28" height="24" rx="3"/><path d="M14 6V1M22 6V1M30 6V1M14 35v-5M22 35v-5M30 35v-5M8 12H3M8 18H3M8 24H3M41 12h-5M41 18h-5M41 24h-5"/><rect x="15" y="13" width="14" height="10" rx="1"/></symbol>
+  <symbol id="i-code" viewBox="0 0 44 36"><rect x="2" y="2" width="40" height="32" rx="4"/><path d="M16 12l-6 6 6 6M28 12l6 6-6 6M24 10l-4 16"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 44 40"><path d="M22 4v32M12 38h20M6 12h32"/><path d="M10 12l-6 14h12zM34 12l-6 14h12z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 36 44"><path d="M18 2l15 6v12c0 10-6.5 18-15 22C9.5 38 3 30 3 20V8z"/><path d="M10 21l6 6 11-12"/></symbol>
+  <symbol id="i-mag" viewBox="0 0 40 40"><circle cx="16" cy="16" r="11"/><path d="M24 24l12 12"/></symbol>
+  <symbol id="i-person" viewBox="0 0 36 40"><circle cx="18" cy="11" r="8"/><path d="M3 38c0-9 6.7-15 15-15s15 6 15 15"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 44 40"><rect x="2" y="2" width="40" height="26" rx="3"/><path d="M15 37h14M22 28v9"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 44 36"><path d="M2 32V8M2 24h40v8M2 24v-8h13a5 5 0 015 5v3M42 32V18H20"/><circle cx="9" cy="17" r="3"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 36 44"><path d="M12 2h12M14 2v14L3 36a4 4 0 003.5 6h23A4 4 0 0033 36L22 16V2"/><path d="M9 31h18"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16"/><path d="M20 10v10l7 5"/></symbol>
+  <symbol id="i-hosp" viewBox="0 0 40 40"><rect x="4" y="8" width="32" height="30" rx="2"/><path d="M14 2h12v6H14zM20 16v10M15 21h10M10 38v-8h6v8M24 38v-8h6v8"/></symbol>
+  <symbol id="i-pill" viewBox="0 0 40 40"><rect x="4" y="14" width="32" height="12" rx="6" transform="rotate(-35 20 20)"/><path d="M20 10l0 20" transform="rotate(-35 20 20)"/></symbol>
+  <symbol id="i-json" viewBox="0 0 40 40"><path d="M14 4c-4 0-5 2-5 5v6c0 2-1 4-4 5 3 1 4 3 4 5v6c0 3 1 5 5 5M26 4c4 0 5 2 5 5v6c0 2 1 4 4 5-3 1-4 3-4 5v6c0 3-1 5-5 5"/></symbol>
+  <symbol id="i-log" viewBox="0 0 40 40"><rect x="5" y="4" width="30" height="32" rx="3"/><path d="M11 12h18M11 19h18M11 26h10"/></symbol>
+</defs>
+
+<rect width="1500" height="1010" fill="#fff"/>
+<text x="40" y="40" font-size="18" fill="#1f2937" font-weight="bold" text-anchor="start">Guideline-adherence judgment workflow — rules decide; RAG supplies evidence and handles exceptions</text>
+<text x="40" y="78" font-size="13.5" fill="#1f2937" font-weight="bold" text-anchor="start">A  One verdict per patient × guideline × item (selection · dose · timing)</text>
+<rect x="40" y="92" width="260" height="118" rx="8" fill="#f8fafc" stroke="#534ab7" stroke-width="1.4"/>
+<use href="#i-json" x="52" y="104" width="24" height="24" fill="none" stroke="#534ab7" stroke-width="2.2"/>
+<text x="84" y="121" font-size="12" fill="#1f2937" font-weight="bold" text-anchor="start">① Case card</text>
+<text x="54" y="142" font-size="9.8" fill="#1f2937" font-weight="normal" text-anchor="start">only values reported before T+0</text>
+<text x="54" y="156" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">regimen R = agents started within 24 h</text>
+<text x="54" y="170" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">risk factors, comorbidities, severity inputs</text>
+<path d="M303 151.0 L327 151.0" stroke="#6b7280" stroke-width="1.6" fill="none" marker-end="url(#ar)" color="#6b7280"/>
+<rect x="330" y="92" width="260" height="118" rx="8" fill="#eaf2fb" stroke="#185fa5" stroke-width="1.4"/>
+<use href="#i-gear" x="342" y="104" width="24" height="24" fill="none" stroke="#185fa5" stroke-width="2.2"/>
+<text x="374" y="121" font-size="12" fill="#1f2937" font-weight="bold" text-anchor="start">② Compute conditions (code)</text>
+<text x="344" y="142" font-size="9.8" fill="#1f2937" font-weight="normal" text-anchor="start">inpatient = ICU (all)</text>
+<text x="344" y="156" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">severe: ventilation · vasopressor · ≥3 minor criteria</text>
+<text x="344" y="170" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">MRSA risk: isolate ≤ 1 y</text>
+<text x="344" y="184" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">Pseudomonas risk: admission + IV abx ≤ 90 d</text>
+<text x="344" y="198" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">each condition = true / false / unknown</text>
+<path d="M593 151.0 L617 151.0" stroke="#6b7280" stroke-width="1.6" fill="none" marker-end="url(#ar)" color="#6b7280"/>
+<rect x="620" y="92" width="260" height="118" rx="8" fill="#eaf2fb" stroke="#185fa5" stroke-width="1.4"/>
+<use href="#i-table" x="632" y="104" width="24" height="24" fill="none" stroke="#185fa5" stroke-width="2.2"/>
+<text x="664" y="121" font-size="12" fill="#1f2937" font-weight="bold" text-anchor="start">③ Find the matching row (rule table)</text>
+<text x="634" y="142" font-size="9.8" fill="#1f2937" font-weight="normal" text-anchor="start">look up KR and INTL separately</text>
+<text x="634" y="156" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">no row → not applicable</text>
+<text x="634" y="170" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">'unknown' → evaluate every candidate row</text>
+<text x="634" y="184" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">same conclusion → adopt; differs → undeterminable</text>
+<path d="M883 151.0 L907 151.0" stroke="#6b7280" stroke-width="1.6" fill="none" marker-end="url(#ar)" color="#6b7280"/>
+<rect x="910" y="92" width="260" height="118" rx="8" fill="#fdf3e0" stroke="#ba7517" stroke-width="1.4"/>
+<use href="#i-scale" x="922" y="104" width="24" height="24" fill="none" stroke="#ba7517" stroke-width="2.2"/>
+<text x="954" y="121" font-size="12" fill="#1f2937" font-weight="bold" text-anchor="start">④ Compare regimen (sets)</text>
+<text x="924" y="142" font-size="9.8" fill="#1f2937" font-weight="normal" text-anchor="start">R vs recommended S / alternative A</text>
+<text x="924" y="156" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">decision table in panel B</text>
+<text x="924" y="170" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">dose · route · timing are separate items</text>
+<path d="M1173 151.0 L1197 151.0" stroke="#6b7280" stroke-width="1.6" fill="none" marker-end="url(#ar)" color="#6b7280"/>
+<rect x="1200" y="92" width="260" height="118" rx="8" fill="#e6f4ef" stroke="#0f6e56" stroke-width="1.4"/>
+<use href="#i-log" x="1212" y="104" width="24" height="24" fill="none" stroke="#0f6e56" stroke-width="2.2"/>
+<text x="1244" y="121" font-size="12" fill="#1f2937" font-weight="bold" text-anchor="start">⑤ Aggregate</text>
+<text x="1214" y="142" font-size="9.8" fill="#1f2937" font-weight="normal" text-anchor="start">adherence = (recommended + alternative)</text>
+<text x="1214" y="156" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">    ÷ (all − not applicable − undeterminable)</text>
+<text x="1214" y="170" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">lower bound: undeterminable counted as non-adherent</text>
+<text x="1214" y="184" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">report by group × guideline</text>
+<rect x="330" y="250" width="260" height="66" rx="8" fill="#fff" stroke="#534ab7" stroke-width="1.4"/>
+<use href="#i-person" x="342" y="271" width="22" height="24" fill="none" stroke="#534ab7" stroke-width="2.2"/>
+<text x="374" y="289" font-size="11.5" fill="#1f2937" font-weight="bold" text-anchor="start">Sample of 20 (+100 random)</text>
+<rect x="620" y="250" width="260" height="66" rx="8" fill="#efedfa" stroke="#534ab7" stroke-width="1.4"/>
+<text x="634" y="272" font-size="11.5" fill="#1f2937" font-weight="bold" text-anchor="start">LLM + RAG verdict</text>
+<text x="634" y="288" font-size="9.3" fill="#534ab7" font-weight="normal" text-anchor="start">same card + 5 retrieved chunks</text>
+<text x="634" y="300" font-size="9.3" fill="#534ab7" font-weight="normal" text-anchor="start">same 8 verdict values as JSON</text>
+<rect x="910" y="250" width="260" height="66" rx="8" fill="#efedfa" stroke="#534ab7" stroke-width="1.4"/>
+<text x="924" y="272" font-size="11.5" fill="#1f2937" font-weight="bold" text-anchor="start">Compare with rule verdict</text>
+<text x="924" y="288" font-size="9.3" fill="#534ab7" font-weight="normal" text-anchor="start">agreement rate</text>
+<text x="924" y="300" font-size="9.3" fill="#534ab7" font-weight="normal" text-anchor="start">disagreement types: LLM error /</text>
+<text x="924" y="312" font-size="9.3" fill="#534ab7" font-weight="normal" text-anchor="start">condition outside the table / missing data</text>
+<rect x="1200" y="250" width="260" height="66" rx="8" fill="#efedfa" stroke="#534ab7" stroke-width="1.4"/>
+<text x="1214" y="272" font-size="11.5" fill="#1f2937" font-weight="bold" text-anchor="start">Clinicians (disagreements only)</text>
+<text x="1214" y="288" font-size="9.3" fill="#534ab7" font-weight="normal" text-anchor="start">confirm justified deviations</text>
+<text x="1214" y="300" font-size="9.3" fill="#534ab7" font-weight="normal" text-anchor="start">blind rating of both report types</text>
+<path d="M593 283 L617 283" stroke="#534ab7" stroke-width="1.6" fill="none" marker-end="url(#arP)" color="#534ab7"/>
+<path d="M883 283 L907 283" stroke="#534ab7" stroke-width="1.6" fill="none" marker-end="url(#arP)" color="#534ab7"/>
+<path d="M1173 283 L1197 283" stroke="#534ab7" stroke-width="1.6" fill="none" marker-end="url(#arP)" color="#534ab7"/>
+<path d="M170.0 210 L170.0 283 L327 283" stroke="#534ab7" stroke-width="1.4" fill="none" stroke-dasharray="5 3" marker-end="url(#arP)"/>
+<path d="M1040.0 210 L1040.0 247" stroke="#ba7517" stroke-width="1.4" fill="none" stroke-dasharray="5 3" marker-end="url(#arO)"/>
+<text x="40" y="350" font-size="13.5" fill="#1f2937" font-weight="bold" text-anchor="start">B  Regimen decision table — per patient, binary (example: severe CAP, no MRSA/Pseudomonas risk → S = ceftriaxone + azithromycin, A = levofloxacin)</text>
+<rect x="40" y="372" width="1420" height="52" rx="6" fill="#e6f4ef" opacity="0.55"/>
+<use href="#i-pill" x="52" y="392" width="20" height="20" fill="none" stroke="#0f6e56" stroke-width="2.2"/>
+<text x="80" y="398" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">R = S</text>
+<rect x="440" y="385" width="152.19999999999996" height="19" rx="9.5" fill="#e6f4ef" stroke="#0f6e56" stroke-width="1.2"/><text x="449" y="399" font-size="10.5" fill="#0f6e56" font-weight="bold" text-anchor="start">Adherent (recommended)</text>
+<text x="440" y="420" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">e.g. ceftriaxone + azithromycin</text>
+<rect x="40" y="430" width="1420" height="52" rx="6" fill="#fff" opacity="0.55"/>
+<use href="#i-pill" x="52" y="450" width="20" height="20" fill="none" stroke="#0f6e56" stroke-width="2.2"/>
+<text x="80" y="456" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">R = A</text>
+<rect x="440" y="443" width="152.19999999999996" height="19" rx="9.5" fill="#e6f4ef" stroke="#0f6e56" stroke-width="1.2"/><text x="449" y="457" font-size="10.5" fill="#0f6e56" font-weight="bold" text-anchor="start">Adherent (alternative)</text>
+<text x="440" y="478" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">e.g. levofloxacin alone · allergy data absent, so accepted without proof; share reported separately</text>
+<rect x="40" y="488" width="1420" height="52" rx="6" fill="#fdf3e0" opacity="0.55"/>
+<use href="#i-pill" x="52" y="508" width="20" height="20" fill="none" stroke="#ba7517" stroke-width="2.2"/>
+<text x="80" y="514" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">R ⊃ S (recommended + extra agent)</text>
+<rect x="440" y="501" width="554.8000000000009" height="19" rx="9.5" fill="#fdf3e0" stroke="#ba7517" stroke-width="1.2"/><text x="449" y="515" font-size="10.5" fill="#ba7517" font-weight="bold" text-anchor="start">adherent if the extra agent is explained by another risk row, else non-adherent (excess)</text>
+<text x="440" y="536" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">e.g. + vancomycin: adherent with MRSA history, excess without</text>
+<rect x="40" y="546" width="1420" height="52" rx="6" fill="#fff" opacity="0.55"/>
+<use href="#i-pill" x="52" y="566" width="20" height="20" fill="none" stroke="#b42318" stroke-width="2.2"/>
+<text x="80" y="572" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">R ⊂ S (only part of the recommendation)</text>
+<rect x="440" y="559" width="274.1999999999999" height="19" rx="9.5" fill="#fdecea" stroke="#b42318" stroke-width="1.2"/><text x="449" y="573" font-size="10.5" fill="#b42318" font-weight="bold" text-anchor="start">Non-adherent (missing component) — not 50%</text>
+<text x="440" y="594" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">e.g. ceftriaxone alone (azithromycin missing). Component overlap only as a secondary metric</text>
+<rect x="40" y="604" width="1420" height="52" rx="6" fill="#fdecea" opacity="0.55"/>
+<use href="#i-pill" x="52" y="624" width="20" height="20" fill="none" stroke="#b42318" stroke-width="2.2"/>
+<text x="80" y="630" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">R ∩ S = ∅</text>
+<rect x="440" y="617" width="207.0999999999999" height="19" rx="9.5" fill="#fdecea" stroke="#b42318" stroke-width="1.2"/><text x="449" y="631" font-size="10.5" fill="#b42318" font-weight="bold" text-anchor="start">Non-adherent (different agents)</text>
+<text x="440" y="652" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">e.g. cefepime + vancomycin without risk factors</text>
+<rect x="40" y="662" width="1420" height="52" rx="6" fill="#fff" opacity="0.55"/>
+<use href="#i-pill" x="52" y="682" width="20" height="20" fill="none" stroke="#6b7280" stroke-width="2.2"/>
+<text x="80" y="688" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">no R · surgical cefazolin only · viral co-infection</text>
+<rect x="440" y="675" width="286.3999999999999" height="19" rx="9.5" fill="#f1f5f9" stroke="#6b7280" stroke-width="1.2"/><text x="449" y="689" font-size="10.5" fill="#6b7280" font-weight="bold" text-anchor="start">Not applicable (out of denominator, counted)</text>
+<text x="440" y="710" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">e.g. cefazolin alone: 310 patients</text>
+<rect x="40" y="720" width="1420" height="52" rx="6" fill="#f1f5f9" opacity="0.55"/>
+<use href="#i-pill" x="52" y="740" width="20" height="20" fill="none" stroke="#6b7280" stroke-width="2.2"/>
+<text x="80" y="746" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">an 'unknown' condition and candidate rows disagree</text>
+<rect x="440" y="733" width="432.80000000000047" height="19" rx="9.5" fill="#f1f5f9" stroke="#6b7280" stroke-width="1.2"/><text x="449" y="747" font-size="10.5" fill="#6b7280" font-weight="bold" text-anchor="start">Undeterminable (out of denominator; non-adherent in the lower bound)</text>
+<text x="440" y="768" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">e.g. no vitals → severity unresolved (≈ 29%)</text>
+<rect x="40" y="778" width="1420" height="52" rx="6" fill="#fff" opacity="0.55"/>
+<use href="#i-pill" x="52" y="798" width="20" height="20" fill="none" stroke="#534ab7" stroke-width="2.2"/>
+<text x="80" y="804" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">non-adherent but the card holds a reason</text>
+<rect x="440" y="791" width="414.5000000000004" height="19" rx="9.5" fill="#efedfa" stroke="#534ab7" stroke-width="1.2"/><text x="449" y="805" font-size="10.5" fill="#534ab7" font-weight="bold" text-anchor="start">Justified deviation (only with evidence cited by clinician / LLM)</text>
+<text x="440" y="826" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">e.g. cefepime chosen for prior Pseudomonas isolate</text>
+<text x="40" y="844" font-size="13.5" fill="#1f2937" font-weight="bold" text-anchor="start">C  Pre-specified handling rules</text>
+<text x="40" y="864" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• card variable absent from the guideline (lactate, CRP …)</text>
+<text x="370" y="864" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ not used in the verdict; context for the report only</text>
+<text x="40" y="881" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• guideline condition absent from the card (allergy, multilobar imaging)</text>
+<text x="370" y="881" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ treated as 'unknown'; alternatives accepted as adherent without proof</text>
+<text x="40" y="898" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• two antibiotics given, only one in the guideline</text>
+<text x="370" y="898" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ patient-level non-adherent (missing); never counted as 50%</text>
+<text x="40" y="915" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• broader than recommended</text>
+<text x="370" y="915" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ adherent if the risk factor is in the card, else non-adherent (excess)</text>
+<text x="40" y="932" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• KR and INTL guidelines disagree</text>
+<text x="370" y="932" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ judge each, report both; rule-table relation (common / conflict)</text>
+<text x="760" y="864" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• dose · route · timing</text>
+<text x="1090" y="864" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ separate items; mg/kg drugs undeterminable without weight</text>
+<text x="760" y="881" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• patients the guideline does not cover (prophylaxis, viral pneumonia)</text>
+<text x="1090" y="881" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ not applicable; counted and removed from the denominator</text>
+<text x="760" y="898" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• many undeterminable cases</text>
+<text x="1090" y="898" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ removed from the denominator, plus a lower-bound rate counting them as non-adherent</text>
+<text x="760" y="915" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• LLM verdict differs from the rule</text>
+<text x="1090" y="915" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ compared on the sample only; the adherence rate comes from rules alone</text>
+<rect x="40" y="955" width="1420" height="30" rx="6" fill="#e6f4ef" stroke="#0f6e56" stroke-width="1.4"/>
+<text x="54" y="975" font-size="10.8" fill="#0f6e56" font-weight="bold" text-anchor="start">Adherence (selection) = (recommended + alternative) ÷ (all − not applicable − undeterminable)   ·   also report: n not applicable, n undeterminable, non-adherence subtypes, alternative share, lower bound</text>
+</svg>

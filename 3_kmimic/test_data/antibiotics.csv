@@ -1,0 +1,6 @@
+hashed_id,drug_raw,atc,ingredient,route,dose,dose_unit,doses_per_24h,t_start,t_stop,in_initial_regimen,source
+a1,Tazoperan 4.5g inj,J01CR05,piperacillin and beta-lactamase inhibitor,IV,4.5,g,3,3,8,1,prescriptions
+a1,Targocid 400mg,J01XA02,teicoplanin,IV,400,mg,1,3.5,8,1,prescriptions
+a2,Rocephin 2g,J01DD04,ceftriaxone,IV,2,g,1,6,30,0,prescriptions
+a2,Zithromax 500mg,J01FA10,azithromycin,PO,500,mg,1,7,30,0,prescriptions
+a3,Sulperazone 2g,J01DD62,cefoperazone and beta-lactamase inhibitor,IV,2,g,2,1,6,1,prescriptions

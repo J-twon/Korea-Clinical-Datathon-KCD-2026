@@ -1,0 +1,217 @@
+<svg viewBox="0 0 1240 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="환자 데이터와 국내·해외 가이드라인이 A0–A5 판정 파이프라인으로 들어가고, 임상의 정답 세트로 평가되어 케이스 뷰와 준수율 표로 나오는 연구 워크플로" font-family="IBM Plex Sans KR, Noto Sans KR, Noto Sans CJK KR, sans-serif" font-size="12">
+<defs>
+  <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+  <marker id="arB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#185fa5"/></marker>
+  <marker id="arP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#534ab7"/></marker>
+  <marker id="arG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0f6e56"/></marker>
+  <marker id="arO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ba7517"/></marker>
+  <symbol id="i-db" viewBox="0 0 40 44"><ellipse cx="20" cy="8" rx="17" ry="6"/><path d="M3 8v28c0 3.3 7.6 6 17 6s17-2.7 17-6V8"/><path d="M3 22c0 3.3 7.6 6 17 6s17-2.7 17-6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 36 44"><path d="M4 2h18l10 10v30H4z"/><path d="M22 2v10h10"/><path d="M9 20h18M9 27h18M9 34h12"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 40 40"><circle cx="20" cy="20" r="7"/><path d="M20 3v6M20 31v6M3 20h6M31 20h6M8 8l4.3 4.3M27.7 27.7L32 32M8 32l4.3-4.3M27.7 12.3L32 8"/></symbol>
+  <symbol id="i-table" viewBox="0 0 44 36"><rect x="2" y="2" width="40" height="32" rx="3"/><path d="M2 12h40M2 23h40M16 2v32M30 2v32"/></symbol>
+  <symbol id="i-funnel" viewBox="0 0 40 40"><path d="M3 4h34L24 20v14l-8 4V20z"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 44 36"><rect x="8" y="6" width="28" height="24" rx="3"/><path d="M14 6V1M22 6V1M30 6V1M14 35v-5M22 35v-5M30 35v-5M8 12H3M8 18H3M8 24H3M41 12h-5M41 18h-5M41 24h-5"/><rect x="15" y="13" width="14" height="10" rx="1"/></symbol>
+  <symbol id="i-code" viewBox="0 0 44 36"><rect x="2" y="2" width="40" height="32" rx="4"/><path d="M16 12l-6 6 6 6M28 12l6 6-6 6M24 10l-4 16"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 44 40"><path d="M22 4v32M12 38h20M6 12h32"/><path d="M10 12l-6 14h12zM34 12l-6 14h12z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 36 44"><path d="M18 2l15 6v12c0 10-6.5 18-15 22C9.5 38 3 30 3 20V8z"/><path d="M10 21l6 6 11-12"/></symbol>
+  <symbol id="i-mag" viewBox="0 0 40 40"><circle cx="16" cy="16" r="11"/><path d="M24 24l12 12"/></symbol>
+  <symbol id="i-person" viewBox="0 0 36 40"><circle cx="18" cy="11" r="8"/><path d="M3 38c0-9 6.7-15 15-15s15 6 15 15"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 44 40"><rect x="2" y="2" width="40" height="26" rx="3"/><path d="M15 37h14M22 28v9"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 44 36"><path d="M2 32V8M2 24h40v8M2 24v-8h13a5 5 0 015 5v3M42 32V18H20"/><circle cx="9" cy="17" r="3"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 36 44"><path d="M12 2h12M14 2v14L3 36a4 4 0 003.5 6h23A4 4 0 0033 36L22 16V2"/><path d="M9 31h18"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16"/><path d="M20 10v10l7 5"/></symbol>
+  <symbol id="i-hosp" viewBox="0 0 40 40"><rect x="4" y="8" width="32" height="30" rx="2"/><path d="M14 2h12v6H14zM20 16v10M15 21h10M10 38v-8h6v8M24 38v-8h6v8"/></symbol>
+  <symbol id="i-pill" viewBox="0 0 40 40"><rect x="4" y="14" width="32" height="12" rx="6" transform="rotate(-35 20 20)"/><path d="M20 10l0 20" transform="rotate(-35 20 20)"/></symbol>
+  <symbol id="i-json" viewBox="0 0 40 40"><path d="M14 4c-4 0-5 2-5 5v6c0 2-1 4-4 5 3 1 4 3 4 5v6c0 3 1 5 5 5M26 4c4 0 5 2 5 5v6c0 2 1 4 4 5-3 1-4 3-4 5v6c0 3-1 5-5 5"/></symbol>
+  <symbol id="i-log" viewBox="0 0 40 40"><rect x="5" y="4" width="30" height="32" rx="3"/><path d="M11 12h18M11 19h18M11 26h10"/></symbol>
+</defs>
+
+<g id="lanes">
+  <rect x="20" y="36" width="540" height="272" rx="12" fill="#e6f1fb" stroke="#185fa5" stroke-width="1.2"/>
+  <rect x="580" y="36" width="640" height="272" rx="12" fill="#eeedfe" stroke="#534ab7" stroke-width="1.2"/>
+  <rect x="20" y="336" width="1200" height="232" rx="12" fill="#e1f5ee" stroke="#0f6e56" stroke-width="1.2"/>
+  <rect x="20" y="596" width="620" height="164" rx="12" fill="#faeeda" stroke="#ba7517" stroke-width="1.2"/>
+  <rect x="660" y="596" width="560" height="164" rx="12" fill="#f1efe8" stroke="#5f5e5a" stroke-width="1.2"/>
+  <text x="36" y="60" font-size="13.5" font-weight="700" fill="#0c447c">A · 환자 데이터 — MIMIC 접근 권한자</text>
+  <text x="596" y="60" font-size="13.5" font-weight="700" fill="#26215c">B · 가이드라인 — 팀 전체 (국내 · 해외 두 갈래)</text>
+  <text x="36" y="360" font-size="13.5" font-weight="700" fill="#04342c">C · 판정 파이프라인 — A0→A5 순서대로 호출, 중간 산출 전부 저장</text>
+  <text x="700" y="360" font-size="10.5" fill="#0f6e56">LLM 3 (A1 · A4 · A5) · 코드 3 (A0 · A2 · A3) · temperature 0 · 재시도 없음(보류로 처리) · 프롬프트는 버전 관리</text>
+  <text x="36" y="620" font-size="13.5" font-weight="700" fill="#633806">D · 평가 — 사람이 만드는 정답</text>
+  <text x="676" y="620" font-size="13.5" font-weight="700" fill="#2c2c2a">E · 출력</text>
+</g>
+<g id="laneA" stroke-linecap="round" stroke-linejoin="round">
+  <use href="#i-db" x="52" y="78" width="40" height="44" fill="none" stroke="#0c447c" stroke-width="2.2"/>
+  <text x="72" y="138" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0c447c">MIMIC-IV 3.1</text>
+  <text x="72" y="152" text-anchor="middle" font-size="10" fill="#185fa5">hosp · icu 모듈</text>
+  <use href="#i-db" x="52" y="168" width="40" height="44" fill="none" stroke="#0c447c" stroke-width="2.2"/>
+  <text x="72" y="228" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0c447c">K-MIMIC</text>
+  <text x="72" y="242" text-anchor="middle" font-size="10" fill="#185fa5">KHDP 내부 · 표기 확인</text>
+  <path d="M98 100 H134 V147 H168" fill="none" stroke="#185fa5" stroke-width="1.4" marker-end="url(#arB)"/>
+  <path d="M98 190 H134 V147" fill="none" stroke="#185fa5" stroke-width="1.4"/>
+  <rect x="170" y="86" width="178" height="122" rx="8" fill="#fff" fill-opacity=".8" stroke="#185fa5"/>
+  <use href="#i-gear" x="182" y="96" width="30" height="30" fill="none" stroke="#0c447c" stroke-width="2.2"/>
+  <text x="222" y="116" font-size="12.5" font-weight="700" fill="#0c447c">전처리</text>
+  <text x="182" y="142" font-size="10.5" fill="#0c447c">① 항생제 정규화 (성분 · 계열 · 경로)</text>
+  <text x="182" y="158" font-size="10.5" fill="#0c447c">② 감염 의심 시점 t0 (처방 ↔ 배양)</text>
+  <text x="182" y="174" font-size="10.5" fill="#0c447c">③ 경험적 코스 정의 (첫 48h · 배양 전)</text>
+  <text x="182" y="190" font-size="10.5" fill="#0c447c">④ 케이스 카드 (t0 이전 정보만)</text>
+  <path d="M348 147 H378" fill="none" stroke="#185fa5" stroke-width="1.4" marker-end="url(#arB)"/>
+  <rect x="380" y="86" width="164" height="122" rx="8" fill="#fff" fill-opacity=".8" stroke="#185fa5"/>
+  <use href="#i-table" x="392" y="98" width="40" height="32" fill="none" stroke="#0c447c" stroke-width="2.2"/>
+  <text x="440" y="118" font-size="12.5" font-weight="700" fill="#0c447c">에피소드 테이블</text>
+  <text x="392" y="146" font-size="10.5" fill="#0c447c">1행 = ICU 재원 × t0</text>
+  <text x="392" y="162" font-size="10.5" fill="#0c447c">t0 이전 정보만 (available_at)</text>
+  <text x="392" y="178" font-size="10.5" fill="#0c447c">환자 단위 → 플랫폼 밖 반출 없음</text>
+  <text x="392" y="194" font-size="10.5" fill="#0c447c">팀에는 집계표만</text>
+  <use href="#i-funnel" x="176" y="232" width="28" height="28" fill="none" stroke="#0c447c" stroke-width="2.2"/>
+  <text x="214" y="246" font-size="11.5" font-weight="600" fill="#0c447c">코호트: 질환군 코드 6개 · ICU 입실 입원 · 성인</text>
+  <text x="214" y="264" font-size="10.5" fill="#185fa5">진단코드는 환자 선정에만 쓰고, 판정 입력에는 넣지 않음 (퇴원 후 코드)</text>
+  <text x="214" y="282" font-size="10.5" fill="#185fa5">감염군(패혈증·폐렴·요로감염) + 상황군(호흡부전·간경변·쇼크)</text>
+</g>
+<g id="laneB" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="596" y="78" width="276" height="60" rx="8" fill="#fff" fill-opacity=".8" stroke="#534ab7"/>
+  <text x="608" y="116" font-size="20">🇰🇷</text>
+  <use href="#i-doc" x="642" y="88" width="24" height="30" fill="none" stroke="#26215c" stroke-width="2"/>
+  <text x="676" y="98" font-size="11.5" font-weight="700" fill="#26215c">국내 — 확보 3종</text>
+  <text x="676" y="113" font-size="10.5" fill="#26215c">패혈증 · CAP · UTI · 간경변 지침</text>
+  <text x="676" y="128" font-size="10" fill="#534ab7">HAP/VAP 2023 (목록 K01–K11)</text>
+  <rect x="596" y="150" width="276" height="60" rx="8" fill="#fff" fill-opacity=".8" stroke="#534ab7"/>
+  <text x="608" y="188" font-size="20">🌐</text>
+  <use href="#i-doc" x="642" y="160" width="24" height="30" fill="none" stroke="#26215c" stroke-width="2"/>
+  <text x="676" y="170" font-size="11.5" font-weight="700" fill="#26215c">해외 — 수집 예정</text>
+  <text x="676" y="185" font-size="10.5" fill="#26215c">SSC · IDSA/ATS CAP · HAP/VAP</text>
+  <text x="676" y="200" font-size="10.5" fill="#26215c">IDSA cUTI · AASLD SBP (M01–M18)</text>
+  <path d="M872 108 H884 V146 H898" fill="none" stroke="#534ab7" stroke-width="1.4" marker-end="url(#arP)"/>
+  <path d="M872 180 H884 V146" fill="none" stroke="#534ab7" stroke-width="1.4"/>
+  <rect x="900" y="84" width="150" height="124" rx="8" fill="#fff" fill-opacity=".8" stroke="#534ab7"/>
+  <use href="#i-person" x="912" y="94" width="24" height="28" fill="none" stroke="#26215c" stroke-width="2.2"/>
+  <use href="#i-chip" x="944" y="94" width="34" height="28" fill="none" stroke="#26215c" stroke-width="2"/>
+  <text x="912" y="142" font-size="12" font-weight="700" fill="#26215c">권고 추출 + 검수</text>
+  <text x="912" y="160" font-size="10.5" fill="#26215c">LLM 초안 → 임상의 확인</text>
+  <text x="912" y="175" font-size="10.5" fill="#26215c">조건 → 약제 · 시간 · 기간</text>
+  <text x="912" y="190" font-size="10.5" fill="#26215c">권고번호 · 근거등급 · 쪽</text>
+  <path d="M1050 118 H1070" fill="none" stroke="#534ab7" stroke-width="1.4" marker-end="url(#arP)"/>
+  <path d="M1050 183 H1070" fill="none" stroke="#534ab7" stroke-width="1.4" marker-end="url(#arP)"/>
+  <rect x="1072" y="86" width="136" height="64" rx="8" fill="#fff" fill-opacity=".8" stroke="#534ab7"/>
+  <use href="#i-json" x="1082" y="96" width="26" height="26" fill="none" stroke="#26215c" stroke-width="2.2"/>
+  <text x="1116" y="110" font-size="11.5" font-weight="700" fill="#26215c">규칙 JSON</text>
+  <text x="1082" y="130" font-size="9.5" fill="#26215c">jurisdiction · counterpart</text>
+  <text x="1082" y="143" font-size="9.5" fill="#26215c">relation: 공통 / 상충 / 단독</text>
+  <rect x="1072" y="158" width="136" height="50" rx="8" fill="#fff" fill-opacity=".8" stroke="#534ab7"/>
+  <use href="#i-mag" x="1082" y="167" width="24" height="24" fill="none" stroke="#26215c" stroke-width="2.2"/>
+  <text x="1116" y="180" font-size="11.5" font-weight="700" fill="#26215c">인용 색인</text>
+  <text x="1082" y="201" font-size="9.5" fill="#26215c">RAG는 근거 구절 찾기만</text>
+  <use href="#i-scale" x="600" y="232" width="28" height="26" fill="none" stroke="#26215c" stroke-width="2.2"/>
+  <text x="640" y="246" font-size="11.5" font-weight="600" fill="#26215c">어느 자로 재나 — 국내만 / 해외만 / 둘 다(공통 · 상충 구분) → 팀 상의 안건 ①</text>
+  <text x="640" y="264" font-size="10.5" fill="#534ab7">공통 규칙 = 두 지침의 권고가 같음 · 상충 규칙 = 다름 → 상충 시 어느 쪽을 따랐는지 따로 집계</text>
+  <text x="640" y="282" font-size="10.5" fill="#534ab7">규칙 하나 = { 조건, 1차 약제, 대안, 시간 / 기간, 근거등급, 출처 쪽 }</text>
+</g>
+<g id="laneC" stroke-linecap="round" stroke-linejoin="round">
+  <!-- A0 -->
+  <rect x="40" y="382" width="170" height="118" rx="8" fill="#fff" fill-opacity=".85" stroke="#0f6e56"/>
+  <use href="#i-code" x="52" y="394" width="34" height="28" fill="none" stroke="#04342c" stroke-width="2.2"/>
+  <rect x="154" y="392" width="46" height="18" rx="9" fill="none" stroke="#0f6e56"/><text x="177" y="405" text-anchor="middle" font-size="10" font-weight="700" fill="#0f6e56">code</text>
+  <text x="52" y="448" font-size="12.5" font-weight="700" fill="#04342c">A0 케이스 빌더</text>
+  <text x="52" y="468" font-size="10.5" fill="#0f6e56">t0 이전 정보만 추려</text>
+  <text x="52" y="484" font-size="10.5" fill="#0f6e56">케이스 JSON 생성</text>
+  <path d="M210 441 H233" fill="none" stroke="#0f6e56" stroke-width="1.4" marker-end="url(#arG)"/>
+  <!-- A1 -->
+  <rect x="235" y="382" width="170" height="118" rx="8" fill="#fff" fill-opacity=".85" stroke="#0f6e56"/>
+  <use href="#i-chip" x="247" y="394" width="36" height="30" fill="none" stroke="#04342c" stroke-width="2"/>
+  <rect x="349" y="392" width="46" height="18" rx="9" fill="#0f6e56"/><text x="372" y="405" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">LLM</text>
+  <text x="247" y="448" font-size="12.5" font-weight="700" fill="#04342c">A1 감염 분류 · 중증도</text>
+  <text x="247" y="468" font-size="10.5" fill="#0f6e56">CAP/HAP·VAP · UTI · 감염 여부</text>
+  <text x="247" y="484" font-size="10.5" fill="#0f6e56">쇼크 여부 · 신뢰도</text>
+  <path d="M405 441 H428" fill="none" stroke="#0f6e56" stroke-width="1.4" marker-end="url(#arG)"/>
+  <!-- A2 -->
+  <rect x="430" y="382" width="170" height="118" rx="8" fill="#fff" fill-opacity=".85" stroke="#0f6e56"/>
+  <use href="#i-log" x="442" y="392" width="32" height="32" fill="none" stroke="#04342c" stroke-width="2.2"/>
+  <rect x="544" y="392" width="46" height="18" rx="9" fill="none" stroke="#0f6e56"/><text x="567" y="405" text-anchor="middle" font-size="10" font-weight="700" fill="#0f6e56">code</text>
+  <text x="442" y="448" font-size="12.5" font-weight="700" fill="#04342c">A2 위험인자 · 신기능</text>
+  <text x="442" y="468" font-size="10.5" fill="#0f6e56">MRSA · 내성균 위험, 최근 노출</text>
+  <text x="442" y="484" font-size="10.5" fill="#0f6e56">eGFR · 투석 · 면역저하</text>
+  <path d="M600 441 H623" fill="none" stroke="#0f6e56" stroke-width="1.4" marker-end="url(#arG)"/>
+  <!-- A3 -->
+  <rect x="625" y="382" width="170" height="118" rx="8" fill="#fff" fill-opacity=".85" stroke="#0f6e56"/>
+  <use href="#i-mag" x="637" y="392" width="32" height="32" fill="none" stroke="#04342c" stroke-width="2.2"/>
+  <rect x="739" y="392" width="46" height="18" rx="9" fill="none" stroke="#0f6e56"/><text x="762" y="405" text-anchor="middle" font-size="10" font-weight="700" fill="#0f6e56">code</text>
+  <text x="637" y="448" font-size="12.5" font-weight="700" fill="#04342c">A3 규칙 조회</text>
+  <text x="637" y="468" font-size="10.5" fill="#0f6e56">질환군 · 위험인자 → 규칙 ID</text>
+  <text x="637" y="484" font-size="10.5" fill="#0f6e56">+ 인용 구절 (국내 · 해외)</text>
+  <path d="M795 441 H818" fill="none" stroke="#0f6e56" stroke-width="1.4" marker-end="url(#arG)"/>
+  <!-- A4 -->
+  <rect x="820" y="382" width="170" height="118" rx="8" fill="#fff" fill-opacity=".85" stroke="#0f6e56" stroke-width="2"/>
+  <use href="#i-scale" x="832" y="392" width="34" height="32" fill="none" stroke="#04342c" stroke-width="2.2"/>
+  <rect x="934" y="392" width="46" height="18" rx="9" fill="#0f6e56"/><text x="957" y="405" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">LLM</text>
+  <text x="832" y="448" font-size="12.5" font-weight="700" fill="#04342c">A4 준수 판정</text>
+  <text x="832" y="468" font-size="10.5" fill="#0f6e56">타이밍 · 배양 · 선택 · 중단</text>
+  <text x="832" y="484" font-size="10.5" fill="#0f6e56">4값 + 근거 규칙 ID</text>
+  <path d="M990 441 H1013" fill="none" stroke="#0f6e56" stroke-width="1.4" marker-end="url(#arG)"/>
+  <!-- A5 -->
+  <rect x="1015" y="382" width="170" height="118" rx="8" fill="#fff" fill-opacity=".85" stroke="#0f6e56"/>
+  <use href="#i-shield" x="1029" y="391" width="28" height="34" fill="none" stroke="#04342c" stroke-width="2.2"/>
+  <rect x="1129" y="392" width="46" height="18" rx="9" fill="#0f6e56"/><text x="1152" y="405" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">LLM</text>
+  <text x="1027" y="448" font-size="12.5" font-weight="700" fill="#04342c">A5 근거 검증</text>
+  <text x="1027" y="468" font-size="10.5" fill="#0f6e56">인용이 판정을 지지하는가</text>
+  <text x="1027" y="484" font-size="10.5" fill="#0f6e56">불일치 → 판정 보류 (사람)</text>
+  <!-- output capsule -->
+  <path d="M1100 500 V514" fill="none" stroke="#0f6e56" stroke-width="1.4" marker-end="url(#arG)"/>
+  <rect x="40" y="516" width="1145" height="36" rx="18" fill="#fff" fill-opacity=".85" stroke="#0f6e56"/>
+  <use href="#i-log" x="54" y="521" width="26" height="26" fill="none" stroke="#04342c" stroke-width="2.2"/>
+  <text x="92" y="539" font-size="11.5" fill="#04342c">출력 · 에피소드별 항목 판정 { 준수 · 비준수 · 해당 없음 · 정당한 이탈 } + 근거 규칙 ID · 인용 구절 · 전체 호출 로그 (프롬프트 버전 포함)</text>
+</g>
+<g id="stage-labels"><rect x="198" y="433" width="48" height="15" rx="7" fill="#fff" stroke="#0f6e56" stroke-width=".8"/><text x="222" y="444" text-anchor="middle" font-size="9" fill="#0f6e56">케이스</text><rect x="393" y="433" width="48" height="15" rx="7" fill="#fff" stroke="#0f6e56" stroke-width=".8"/><text x="417" y="444" text-anchor="middle" font-size="9" fill="#0f6e56">증후군</text><rect x="588" y="433" width="48" height="15" rx="7" fill="#fff" stroke="#0f6e56" stroke-width=".8"/><text x="612" y="444" text-anchor="middle" font-size="9" fill="#0f6e56">위험인자</text><rect x="783" y="433" width="48" height="15" rx="7" fill="#fff" stroke="#0f6e56" stroke-width=".8"/><text x="807" y="444" text-anchor="middle" font-size="9" fill="#0f6e56">규칙 · 인용</text><rect x="978" y="433" width="48" height="15" rx="7" fill="#fff" stroke="#0f6e56" stroke-width=".8"/><text x="1002" y="444" text-anchor="middle" font-size="9" fill="#0f6e56">판정</text></g>
+<g id="cross" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M462 208 V322 H125 V380" marker-end="url(#ar)"/>
+  <path d="M1140 208 V322 H710 V380" marker-end="url(#ar)"/>
+  <path d="M330 552 V594" marker-end="url(#ar)"/>
+  <path d="M940 552 V594" marker-end="url(#ar)"/>
+</g>
+<g font-size="10.5" fill="currentColor">
+  <text x="296" y="317" text-anchor="middle">① 에피소드 (환자 단위, 플랫폼 내부)</text>
+  <text x="925" y="317" text-anchor="middle">② 규칙 JSON + 인용 색인</text>
+  <text x="340" y="577">③ 판정</text>
+  <text x="950" y="577">④ 판정 결과</text>
+</g>
+<g id="laneD" stroke-linecap="round" stroke-linejoin="round">
+  <use href="#i-person" x="40" y="636" width="28" height="32" fill="none" stroke="#633806" stroke-width="2.2"/>
+  <use href="#i-person" x="76" y="636" width="28" height="32" fill="none" stroke="#633806" stroke-width="2.2"/>
+  <text x="54" y="686" text-anchor="middle" font-size="10" fill="#633806">임상의</text>
+  <text x="90" y="686" text-anchor="middle" font-size="10" fill="#633806">3인</text>
+  <text x="72" y="700" text-anchor="middle" font-size="9.5" fill="#854f0b">평가 → 합의</text>
+  <text x="72" y="713" text-anchor="middle" font-size="9.5" fill="#854f0b">(소규모, 탐색적)</text>
+  <path d="M112 656 H130" fill="none" stroke="#ba7517" stroke-width="1.4" marker-end="url(#arO)"/>
+  <rect x="132" y="630" width="200" height="58" rx="8" fill="#fff" fill-opacity=".8" stroke="#ba7517"/>
+  <text x="144" y="650" font-size="11.5" font-weight="700" fill="#633806">임상의 평가 세트 (질환별 5명)</text>
+  <text x="144" y="666" font-size="10" fill="#633806">1–5점 + 4값 판정 · 임상의 3인</text>
+  <text x="144" y="680" font-size="10" fill="#633806">표본은 케이스 카드에서 무작위 추출</text>
+  <path d="M332 659 H350" fill="none" stroke="#ba7517" stroke-width="1.4" marker-end="url(#arO)"/>
+  <rect x="354" y="626" width="272" height="20" rx="10" fill="#fff" fill-opacity=".8" stroke="#ba7517"/><text x="366" y="640" font-size="10.5" fill="#633806">A1 — 감염 분류 정확도 (혼동행렬)</text>
+  <rect x="354" y="652" width="272" height="20" rx="10" fill="#fff" fill-opacity=".8" stroke="#ba7517"/><text x="366" y="666" font-size="10.5" fill="#633806">A4 — 임상의 판정과 일치율 (4값)</text>
+  <rect x="354" y="678" width="272" height="20" rx="10" fill="#fff" fill-opacity=".8" stroke="#ba7517"/><text x="366" y="692" font-size="10.5" fill="#633806">End-to-end — 준수율 수치의 차이</text>
+  <rect x="354" y="704" width="272" height="20" rx="10" fill="#fff" fill-opacity=".8" stroke="#ba7517"/><text x="366" y="718" font-size="10.5" fill="#633806">절제 — 규칙만 vs LLM 포함</text>
+</g>
+<g id="laneE" stroke-linecap="round" stroke-linejoin="round">
+  <use href="#i-monitor" x="682" y="634" width="44" height="40" fill="none" stroke="#2c2c2a" stroke-width="2.2"/>
+  <text x="740" y="650" font-size="11.5" font-weight="700" fill="#2c2c2a">케이스 뷰 — 3패널</text>
+  <text x="740" y="666" font-size="10.5" fill="#5f5e5a">요약 · 항목별 신호등 · 근거 구절</text>
+  <use href="#i-table" x="682" y="692" width="44" height="34" fill="none" stroke="#2c2c2a" stroke-width="2.2"/>
+  <text x="740" y="708" font-size="11.5" font-weight="700" fill="#2c2c2a">준수율 표</text>
+  <text x="740" y="724" font-size="10.5" fill="#5f5e5a">질환군별 · 국내/해외 기준 · 정당한 이탈</text>
+  <use href="#i-log" x="976" y="638" width="32" height="32" fill="none" stroke="#2c2c2a" stroke-width="2.2"/>
+  <text x="1020" y="650" font-size="11.5" font-weight="700" fill="#2c2c2a">재현 패키지</text>
+  <text x="1020" y="666" font-size="10.5" fill="#5f5e5a">코드 · 프롬프트 · 호출 로그</text>
+  <text x="1020" y="681" font-size="10.5" fill="#5f5e5a">처음부터 재실행 가능해야 함</text>
+</g>
+<g id="legend" font-size="10" fill="currentColor">
+  <rect x="36" y="776" width="12" height="12" rx="2" fill="#e6f1fb" stroke="#185fa5"/><text x="54" y="786">데이터 (권한자)</text>
+  <rect x="150" y="776" width="12" height="12" rx="2" fill="#eeedfe" stroke="#534ab7"/><text x="168" y="786">가이드라인</text>
+  <rect x="246" y="776" width="12" height="12" rx="2" fill="#e1f5ee" stroke="#0f6e56"/><text x="264" y="786">판정 파이프라인</text>
+  <rect x="366" y="776" width="12" height="12" rx="2" fill="#faeeda" stroke="#ba7517"/><text x="384" y="786">사람 · 평가</text>
+  <rect x="462" y="776" width="12" height="12" rx="2" fill="#f1efe8" stroke="#5f5e5a"/><text x="480" y="786">출력</text>
+  <rect x="560" y="774" width="40" height="16" rx="8" fill="#0f6e56"/><text x="580" y="786" text-anchor="middle" font-size="9.5" font-weight="700" fill="#fff">LLM</text>
+  <rect x="606" y="774" width="40" height="16" rx="8" fill="none" stroke="#0f6e56"/><text x="626" y="786" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0f6e56">code</text>
+  <text x="656" y="786">LLM 노드 / 결정적 코드 노드</text>
+  <path d="M850 782 H890" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar)"/><text x="898" y="786">데이터 흐름 (①→④)</text>
+</g>
+</svg>

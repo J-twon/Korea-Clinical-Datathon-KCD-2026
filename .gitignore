@@ -1,0 +1,23 @@
+# 환자 단위 · 자격 필요 자료는 절대 올리지 않는다
+*.jsonl
+!**/demo/*.jsonl
+!**/test_data/*.jsonl
+2_mimic/data/
+2_mimic/results/cards/
+2_mimic/results/cohort_with_sofa.csv
+2_mimic/results/eval_sample.csv
+*.zip
+id_map*.csv
+cards_*.jsonl
+labels.csv
+all_verdicts_*
+eval20_verdicts_*
+4_guideline/pdf/
+4_guideline/text/
+4_guideline/rag_eval/
+6_app/upload/
+archive/
+DATA/
+*.preview.html
+__pycache__/
+.DS_Store

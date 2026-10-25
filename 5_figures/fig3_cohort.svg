@@ -1,0 +1,105 @@
+<svg viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ICU 입실 입원 전체에서 질환군 6개 코드로 후보를 고르고, 항생제 치료 코스가 있는 입원에서 케이스 카드를 만들어 감염군 3개와 상황군 3개로 나누는 흐름" font-family="IBM Plex Sans KR, Noto Sans KR, Noto Sans CJK KR, sans-serif" font-size="12">
+<defs>
+  <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+  <marker id="arB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#185fa5"/></marker>
+  <marker id="arP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#534ab7"/></marker>
+  <marker id="arG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0f6e56"/></marker>
+  <marker id="arO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ba7517"/></marker>
+  <symbol id="i-db" viewBox="0 0 40 44"><ellipse cx="20" cy="8" rx="17" ry="6"/><path d="M3 8v28c0 3.3 7.6 6 17 6s17-2.7 17-6V8"/><path d="M3 22c0 3.3 7.6 6 17 6s17-2.7 17-6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 36 44"><path d="M4 2h18l10 10v30H4z"/><path d="M22 2v10h10"/><path d="M9 20h18M9 27h18M9 34h12"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 40 40"><circle cx="20" cy="20" r="7"/><path d="M20 3v6M20 31v6M3 20h6M31 20h6M8 8l4.3 4.3M27.7 27.7L32 32M8 32l4.3-4.3M27.7 12.3L32 8"/></symbol>
+  <symbol id="i-table" viewBox="0 0 44 36"><rect x="2" y="2" width="40" height="32" rx="3"/><path d="M2 12h40M2 23h40M16 2v32M30 2v32"/></symbol>
+  <symbol id="i-funnel" viewBox="0 0 40 40"><path d="M3 4h34L24 20v14l-8 4V20z"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 44 36"><rect x="8" y="6" width="28" height="24" rx="3"/><path d="M14 6V1M22 6V1M30 6V1M14 35v-5M22 35v-5M30 35v-5M8 12H3M8 18H3M8 24H3M41 12h-5M41 18h-5M41 24h-5"/><rect x="15" y="13" width="14" height="10" rx="1"/></symbol>
+  <symbol id="i-code" viewBox="0 0 44 36"><rect x="2" y="2" width="40" height="32" rx="4"/><path d="M16 12l-6 6 6 6M28 12l6 6-6 6M24 10l-4 16"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 44 40"><path d="M22 4v32M12 38h20M6 12h32"/><path d="M10 12l-6 14h12zM34 12l-6 14h12z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 36 44"><path d="M18 2l15 6v12c0 10-6.5 18-15 22C9.5 38 3 30 3 20V8z"/><path d="M10 21l6 6 11-12"/></symbol>
+  <symbol id="i-mag" viewBox="0 0 40 40"><circle cx="16" cy="16" r="11"/><path d="M24 24l12 12"/></symbol>
+  <symbol id="i-person" viewBox="0 0 36 40"><circle cx="18" cy="11" r="8"/><path d="M3 38c0-9 6.7-15 15-15s15 6 15 15"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 44 40"><rect x="2" y="2" width="40" height="26" rx="3"/><path d="M15 37h14M22 28v9"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 44 36"><path d="M2 32V8M2 24h40v8M2 24v-8h13a5 5 0 015 5v3M42 32V18H20"/><circle cx="9" cy="17" r="3"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 36 44"><path d="M12 2h12M14 2v14L3 36a4 4 0 003.5 6h23A4 4 0 0033 36L22 16V2"/><path d="M9 31h18"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16"/><path d="M20 10v10l7 5"/></symbol>
+  <symbol id="i-hosp" viewBox="0 0 40 40"><rect x="4" y="8" width="32" height="30" rx="2"/><path d="M14 2h12v6H14zM20 16v10M15 21h10M10 38v-8h6v8M24 38v-8h6v8"/></symbol>
+  <symbol id="i-pill" viewBox="0 0 40 40"><rect x="4" y="14" width="32" height="12" rx="6" transform="rotate(-35 20 20)"/><path d="M20 10l0 20" transform="rotate(-35 20 20)"/></symbol>
+  <symbol id="i-json" viewBox="0 0 40 40"><path d="M14 4c-4 0-5 2-5 5v6c0 2-1 4-4 5 3 1 4 3 4 5v6c0 3 1 5 5 5M26 4c4 0 5 2 5 5v6c0 2 1 4 4 5-3 1-4 3-4 5v6c0 3-1 5-5 5"/></symbol>
+  <symbol id="i-log" viewBox="0 0 40 40"><rect x="5" y="4" width="30" height="32" rx="3"/><path d="M11 12h18M11 19h18M11 26h10"/></symbol>
+</defs>
+
+<g stroke-linecap="round" stroke-linejoin="round">
+  <rect x="250" y="16" width="500" height="50" rx="8" fill="#e6f1fb" stroke="#185fa5"/>
+  <use href="#i-bed" x="264" y="26" width="36" height="30" fill="none" stroke="#0c447c" stroke-width="2.2"/>
+  <text x="312" y="37" font-size="12.5" font-weight="700" fill="#0c447c">ICU 입실 입원 85,242 (환자 65,366 · ICU 재원 94,458)</text>
+  <text x="312" y="55" font-size="10.5" fill="#185fa5">MIMIC-IV v3.1 · 2008–2022 · 성인 · 이 중 2016년 이후(ICD-10 시대) 43,823</text>
+  <path d="M500 66 V84" fill="none" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar)"/>
+  <use href="#i-funnel" x="262" y="88" width="26" height="26" fill="none" stroke="#5f5e5a" stroke-width="2.2"/>
+  <text x="298" y="100" font-size="11.5" font-weight="600" fill="currentColor">필터 1 · 질환군 6개 코드 — 감염군 3 + 상황군 3 (아래 상자)</text>
+  <text x="298" y="114" font-size="10" fill="currentColor" opacity=".7">진단코드는 후보 선정용(퇴원 후 부여) · 한 입원이 여러 군에 들어감 · K-MIMIC은 KCD로</text>
+  <rect x="800" y="78" width="184" height="50" rx="6" fill="#fcebeb" stroke="#a32d2d"/>
+  <text x="810" y="93" font-size="10.5" font-weight="600" fill="#501313">6개 군 코드 없음 40,636</text>
+  <text x="810" y="107" font-size="9.5" fill="#791f1f">항생제 54% (대부분 수술 예방</text>
+  <text x="810" y="120" font-size="9.5" fill="#791f1f">cefazolin) → 이번 판정 대상 아님</text>
+  <path d="M774 102 H798" fill="none" stroke="#a32d2d" stroke-width="1.2" marker-end="url(#ar)"/>
+  <path d="M500 118 V134" fill="none" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar)"/>
+  <rect x="250" y="136" width="500" height="44" rx="8" fill="#e6f1fb" stroke="#185fa5"/>
+  <text x="312" y="155" font-size="12.5" font-weight="700" fill="#0c447c">질환군 후보 42,762 입원 — 2016년 이후 23,067</text>
+  <text x="312" y="171" font-size="10.5" fill="#185fa5">항생제 처방 90.7% · 3일 이상 81.4% · 병원 내 사망 18.9%</text>
+  <path d="M500 180 V198" fill="none" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar)"/>
+  <use href="#i-pill" x="256" y="202" width="24" height="24" fill="none" stroke="#5f5e5a" stroke-width="2.2"/>
+  <use href="#i-clock" x="282" y="202" width="22" height="22" fill="none" stroke="#5f5e5a" stroke-width="2.2"/>
+  <text x="312" y="214" font-size="11.5" font-weight="600" fill="currentColor">필터 2 · 전신 항생제 치료 코스가 있음 (국소제 제외 · 수술 예방 ≤ 24h 단일 cefazolin 분리)</text>
+  <text x="312" y="228" font-size="10" fill="currentColor" opacity=".7">t0 = 첫 치료 코스 시작 · 경험적 세트 = t0 ± 48h 시작 코스 · 첫 투여 시각은 eMAR (2016+만)</text>
+  <rect x="800" y="196" width="184" height="36" rx="6" fill="#fcebeb" stroke="#a32d2d"/>
+  <text x="810" y="211" font-size="10.5" font-weight="600" fill="#501313">항생제 처방 없음 3,980</text>
+  <text x="810" y="225" font-size="9.5" fill="#791f1f">상황군에선 '해당 없음'으로 남김</text>
+  <path d="M774 218 H798" fill="none" stroke="#a32d2d" stroke-width="1.2" marker-end="url(#ar)"/>
+  <path d="M500 232 V248" fill="none" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar)"/>
+  <rect x="250" y="250" width="500" height="52" rx="8" fill="#e1f5ee" stroke="#0f6e56" stroke-width="2"/>
+  <use href="#i-table" x="264" y="262" width="34" height="28" fill="none" stroke="#04342c" stroke-width="2.2"/>
+  <text x="312" y="270" font-size="13" font-weight="700" fill="#04342c">판정 대상 38,782 입원 → 케이스 카드 (t0 이전 정보 + 경험적 세트)</text>
+  <text x="312" y="288" font-size="10.5" fill="#0f6e56">타이밍(분 단위)은 2016년 이후 분만 · 군 중복 허용 · 상황군은 '시작 근거 · 중단'을 판정</text>
+  <path d="M500 302 V314" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <path d="M500 314 H255 V318 M500 314 H745 V318" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <path d="M255 330 V342 M745 330 V342" fill="none" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar)"/>
+  <text x="255" y="326" text-anchor="middle" font-size="11" font-weight="700" fill="#04342c">감염군 — 어떤 항생제가 맞는가</text>
+  <text x="745" y="326" text-anchor="middle" font-size="11" font-weight="700" fill="#633806">상황군 — 시작 · 유지할 근거가 있는가</text>
+  <!-- infection groups (left column) -->
+  <rect x="20" y="344" width="470" height="84" rx="8" fill="#fff" stroke="#0f6e56"/>
+  <text x="32" y="364" font-size="12" font-weight="700" fill="#04342c">⚡ 패혈증 (패혈성 쇼크 포함)   14,122 · 2016+ 8,133</text>
+  <text x="32" y="381" font-size="10" fill="#0f6e56">쇼크 코드 8,502 (2016+ 5,374) · 부위 동반: 폐렴 6,209 · 요로감염 3,405 · 부위 코드 없음 5,829</text>
+  <text x="32" y="396" font-size="10" fill="#0f6e56">항생제 98.9% · 사망 28.2% · vanco · cefepime · metro</text>
+  <text x="32" y="414" font-size="10" font-weight="600" fill="#04342c">판정: 인지 후 1h(쇼크)/3h 투여 · 투여 전 혈액배양 · 부위 동반 시 그 부위 규칙</text>
+  <rect x="20" y="436" width="470" height="84" rx="8" fill="#fff" stroke="#0f6e56"/>
+  <text x="32" y="456" font-size="12" font-weight="700" fill="#04342c">🫁 폐렴 (흡인성 포함)   16,999 · 2016+ 9,086</text>
+  <text x="32" y="473" font-size="10" fill="#0f6e56">VAP 코드 2,328 · CAP/HAP/VAP는 발생 시각·인공호흡으로 분리 · 바이러스 폐렴(J12)은 별도 표시</text>
+  <text x="32" y="488" font-size="10" fill="#0f6e56">항생제 97.6% · 사망 22.3% · vanco · cefepime · ceftriax.</text>
+  <text x="32" y="506" font-size="10" font-weight="600" fill="#04342c">판정: 중증도 · MRSA/녹농균 위험에 따른 1차 약제 · 기간</text>
+  <rect x="20" y="528" width="470" height="84" rx="8" fill="#fff" stroke="#0f6e56"/>
+  <text x="32" y="548" font-size="12" font-weight="700" fill="#04342c">💧 요로감염   10,809 · 2016+ 4,989</text>
+  <text x="32" y="565" font-size="10" fill="#0f6e56">부위불명(N39.0) 중심 · 도뇨관 여부로 CAUTI 구분 · 소변 배양 양성만으로는 감염 아님(무증상 세균뇨)</text>
+  <text x="32" y="580" font-size="10" fill="#0f6e56">항생제 98.4% · 사망 12.8% · vanco · ceftriax. · cipro</text>
+  <text x="32" y="598" font-size="10" font-weight="600" fill="#04342c">판정: 내성균(ESBL) 위험에 따른 1차 약제 · 7일 시점 재평가 · 무증상 세균뇨 치료 금지</text>
+  <!-- situation groups (right column) -->
+  <rect x="510" y="344" width="470" height="84" rx="8" fill="#fffaf0" stroke="#ba7517"/>
+  <text x="522" y="364" font-size="12" font-weight="700" fill="#633806">🫧 급성 호흡부전   20,449 · 2016+ 11,561</text>
+  <text x="522" y="381" font-size="10" fill="#854f0b">폐렴 동반 9,778 → 폐렴 규칙 · 감염 코드 없음 7,062 중 항생제 5,018 (71%) · COPD 악화 2,197</text>
+  <text x="522" y="396" font-size="10" fill="#854f0b">항생제 88.7% · 사망 25.8% · vanco · cefepime · ceftriax.</text>
+  <text x="522" y="414" font-size="10" font-weight="600" fill="#633806">판정: 감염 근거 없이 시작한 항생제의 48–72h 내 중단 · COPD 악화는 보류</text>
+  <rect x="510" y="436" width="470" height="84" rx="8" fill="#fffaf0" stroke="#ba7517"/>
+  <text x="522" y="456" font-size="12" font-weight="700" fill="#633806">🫀 간경변 / 만성 간질환   5,902 · 2016+ 3,236</text>
+  <text x="522" y="473" font-size="10" fill="#854f0b">복수·SBP 동반 952 → SBP 치료 규칙 · 위장관 출혈 동반 1,479 → 예방적 항생제 규칙</text>
+  <text x="522" y="488" font-size="10" fill="#854f0b">항생제 88.6% · 사망 22.4% · vanco · ceftriax. · cefepime</text>
+  <text x="522" y="506" font-size="10" font-weight="600" fill="#633806">판정: SBP 3세대 cephalosporin · 출혈 시 ceftriaxone ≤ 7일 · 신독성 약제 회피</text>
+  <rect x="510" y="528" width="470" height="84" rx="8" fill="#fffaf0" stroke="#ba7517"/>
+  <text x="522" y="548" font-size="12" font-weight="700" fill="#633806">💔 쇼크 (패혈성 제외)   7,258 · 2016+ 5,346</text>
+  <text x="522" y="565" font-size="10" fill="#854f0b">감염 코드 동반 3,604 → 혼합 쇼크, 그 감염 규칙 · 감염 코드 없음 3,654 중 항생제 2,684 (73%)</text>
+  <text x="522" y="580" font-size="10" fill="#854f0b">항생제 85.7% · 사망 33.4% · vanco · cefepime · ceftriax.</text>
+  <text x="522" y="598" font-size="10" font-weight="600" fill="#633806">판정: 원인 미상 쇼크의 경험적 항생제 → 감염 배제 후 48–72h 내 중단</text>
+  <!-- notes -->
+  <rect x="20" y="624" width="960" height="56" rx="8" fill="none" stroke="currentColor" stroke-opacity=".4" stroke-dasharray="5 3"/>
+  <text x="34" y="643" font-size="11" font-weight="700" fill="currentColor">왜 상황군을 넣나</text>
+  <text x="34" y="659" font-size="10.5" fill="currentColor" opacity=".85">감염 부위가 아닌데도 ICU에서 항생제가 가장 많이 시작되는 세 상황. 지침은 '무엇을 줄까'가 아니라 '시작·유지할 근거가 있나, 언제 끊나, 무엇을 피하나'를 말한다 → 항생제 과잉을 보는 창</text>
+  <text x="34" y="674" font-size="10" fill="currentColor" opacity=".65">숫자: 로컬 MIMIC-IV v3.1, ICU 입실 입원 기준, 접두어 매칭, 입원당 1회 · 항생제 = MIMIC-code antibiotic 개념(전신 투여) · 상황군의 사망률이 감염군보다 높은 점에 주의(중증도 교란)</text>
+  <text x="20" y="708" font-size="10" fill="currentColor" opacity=".65">빨강 = 판정 대상에서 빠지는 입원 · 초록 = 감염군 · 주황 = 상황군 · top-3는 처방 입원 중 비율 순</text>
+</g>
+</svg>

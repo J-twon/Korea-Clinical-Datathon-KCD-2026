@@ -1,0 +1,153 @@
+<svg viewBox="0 0 1500 1010" xmlns="http://www.w3.org/2000/svg" role="img" font-family="Noto Sans CJK KR, Noto Sans KR, sans-serif" font-size="11">
+<defs>
+  <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+  <marker id="arB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#185fa5"/></marker>
+  <marker id="arP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#534ab7"/></marker>
+  <marker id="arG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0f6e56"/></marker>
+  <marker id="arO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ba7517"/></marker>
+  <symbol id="i-db" viewBox="0 0 40 44"><ellipse cx="20" cy="8" rx="17" ry="6"/><path d="M3 8v28c0 3.3 7.6 6 17 6s17-2.7 17-6V8"/><path d="M3 22c0 3.3 7.6 6 17 6s17-2.7 17-6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 36 44"><path d="M4 2h18l10 10v30H4z"/><path d="M22 2v10h10"/><path d="M9 20h18M9 27h18M9 34h12"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 40 40"><circle cx="20" cy="20" r="7"/><path d="M20 3v6M20 31v6M3 20h6M31 20h6M8 8l4.3 4.3M27.7 27.7L32 32M8 32l4.3-4.3M27.7 12.3L32 8"/></symbol>
+  <symbol id="i-table" viewBox="0 0 44 36"><rect x="2" y="2" width="40" height="32" rx="3"/><path d="M2 12h40M2 23h40M16 2v32M30 2v32"/></symbol>
+  <symbol id="i-funnel" viewBox="0 0 40 40"><path d="M3 4h34L24 20v14l-8 4V20z"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 44 36"><rect x="8" y="6" width="28" height="24" rx="3"/><path d="M14 6V1M22 6V1M30 6V1M14 35v-5M22 35v-5M30 35v-5M8 12H3M8 18H3M8 24H3M41 12h-5M41 18h-5M41 24h-5"/><rect x="15" y="13" width="14" height="10" rx="1"/></symbol>
+  <symbol id="i-code" viewBox="0 0 44 36"><rect x="2" y="2" width="40" height="32" rx="4"/><path d="M16 12l-6 6 6 6M28 12l6 6-6 6M24 10l-4 16"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 44 40"><path d="M22 4v32M12 38h20M6 12h32"/><path d="M10 12l-6 14h12zM34 12l-6 14h12z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 36 44"><path d="M18 2l15 6v12c0 10-6.5 18-15 22C9.5 38 3 30 3 20V8z"/><path d="M10 21l6 6 11-12"/></symbol>
+  <symbol id="i-mag" viewBox="0 0 40 40"><circle cx="16" cy="16" r="11"/><path d="M24 24l12 12"/></symbol>
+  <symbol id="i-person" viewBox="0 0 36 40"><circle cx="18" cy="11" r="8"/><path d="M3 38c0-9 6.7-15 15-15s15 6 15 15"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 44 40"><rect x="2" y="2" width="40" height="26" rx="3"/><path d="M15 37h14M22 28v9"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 44 36"><path d="M2 32V8M2 24h40v8M2 24v-8h13a5 5 0 015 5v3M42 32V18H20"/><circle cx="9" cy="17" r="3"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 36 44"><path d="M12 2h12M14 2v14L3 36a4 4 0 003.5 6h23A4 4 0 0033 36L22 16V2"/><path d="M9 31h18"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16"/><path d="M20 10v10l7 5"/></symbol>
+  <symbol id="i-hosp" viewBox="0 0 40 40"><rect x="4" y="8" width="32" height="30" rx="2"/><path d="M14 2h12v6H14zM20 16v10M15 21h10M10 38v-8h6v8M24 38v-8h6v8"/></symbol>
+  <symbol id="i-pill" viewBox="0 0 40 40"><rect x="4" y="14" width="32" height="12" rx="6" transform="rotate(-35 20 20)"/><path d="M20 10l0 20" transform="rotate(-35 20 20)"/></symbol>
+  <symbol id="i-json" viewBox="0 0 40 40"><path d="M14 4c-4 0-5 2-5 5v6c0 2-1 4-4 5 3 1 4 3 4 5v6c0 3 1 5 5 5M26 4c4 0 5 2 5 5v6c0 2 1 4 4 5-3 1-4 3-4 5v6c0 3-1 5-5 5"/></symbol>
+  <symbol id="i-log" viewBox="0 0 40 40"><rect x="5" y="4" width="30" height="32" rx="3"/><path d="M11 12h18M11 19h18M11 26h10"/></symbol>
+</defs>
+
+<rect width="1500" height="1010" fill="#fff"/>
+<text x="40" y="40" font-size="18" fill="#1f2937" font-weight="bold" text-anchor="start">가이드라인 준수 판정 워크플로 — 규칙이 판정하고, RAG는 근거와 예외를 맡는다</text>
+<text x="40" y="78" font-size="13.5" fill="#1f2937" font-weight="bold" text-anchor="start">A  환자 1명 × 지침 1개 × 항목(선택 · 용량 · 시기)마다 판정한다</text>
+<rect x="40" y="92" width="260" height="118" rx="8" fill="#f8fafc" stroke="#534ab7" stroke-width="1.4"/>
+<use href="#i-json" x="52" y="104" width="24" height="24" fill="none" stroke="#534ab7" stroke-width="2.2"/>
+<text x="84" y="121" font-size="12" fill="#1f2937" font-weight="bold" text-anchor="start">① 사례 카드</text>
+<text x="54" y="142" font-size="9.8" fill="#1f2937" font-weight="normal" text-anchor="start">T+0(첫 항생제) 이전 값만</text>
+<text x="54" y="156" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">요법 R = 24h 안 시작 성분 집합</text>
+<text x="54" y="170" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">위험인자 · 기저질환 · 중증도 재료</text>
+<path d="M303 151.0 L327 151.0" stroke="#6b7280" stroke-width="1.6" fill="none" marker-end="url(#ar)" color="#6b7280"/>
+<rect x="330" y="92" width="260" height="118" rx="8" fill="#eaf2fb" stroke="#185fa5" stroke-width="1.4"/>
+<use href="#i-gear" x="342" y="104" width="24" height="24" fill="none" stroke="#185fa5" stroke-width="2.2"/>
+<text x="374" y="121" font-size="12" fill="#1f2937" font-weight="bold" text-anchor="start">② 조건 계산 (코드)</text>
+<text x="344" y="142" font-size="9.8" fill="#1f2937" font-weight="normal" text-anchor="start">입원 = ICU (전원 해당)</text>
+<text x="344" y="156" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">중증: 환기 · 승압제 · 소기준 ≥3</text>
+<text x="344" y="170" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">MRSA 위험: 1년 내 분리</text>
+<text x="344" y="184" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">녹농균 위험: 90일 입원 + 정주 항생제</text>
+<text x="344" y="198" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">각 조건 = 참 / 거짓 / 모름</text>
+<path d="M593 151.0 L617 151.0" stroke="#6b7280" stroke-width="1.6" fill="none" marker-end="url(#ar)" color="#6b7280"/>
+<rect x="620" y="92" width="260" height="118" rx="8" fill="#eaf2fb" stroke="#185fa5" stroke-width="1.4"/>
+<use href="#i-table" x="632" y="104" width="24" height="24" fill="none" stroke="#185fa5" stroke-width="2.2"/>
+<text x="664" y="121" font-size="12" fill="#1f2937" font-weight="bold" text-anchor="start">③ 해당 행 찾기 (규칙표)</text>
+<text x="634" y="142" font-size="9.8" fill="#1f2937" font-weight="normal" text-anchor="start">국내(K) · 해외(M) 각각 조회</text>
+<text x="634" y="156" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">행 없음 → 해당 없음</text>
+<text x="634" y="170" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">'모름' 조건 → 후보 행 전부 평가</text>
+<text x="634" y="184" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">결론 같으면 채택, 다르면 판정 불가</text>
+<path d="M883 151.0 L907 151.0" stroke="#6b7280" stroke-width="1.6" fill="none" marker-end="url(#ar)" color="#6b7280"/>
+<rect x="910" y="92" width="260" height="118" rx="8" fill="#fdf3e0" stroke="#ba7517" stroke-width="1.4"/>
+<use href="#i-scale" x="922" y="104" width="24" height="24" fill="none" stroke="#ba7517" stroke-width="2.2"/>
+<text x="954" y="121" font-size="12" fill="#1f2937" font-weight="bold" text-anchor="start">④ 요법 비교 (성분 집합)</text>
+<text x="924" y="142" font-size="9.8" fill="#1f2937" font-weight="normal" text-anchor="start">R vs 추천 S / 대안 A</text>
+<text x="924" y="156" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">아래 B의 분기표</text>
+<text x="924" y="170" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">용량 · 경로 · 시기는 별도 항목</text>
+<path d="M1173 151.0 L1197 151.0" stroke="#6b7280" stroke-width="1.6" fill="none" marker-end="url(#ar)" color="#6b7280"/>
+<rect x="1200" y="92" width="260" height="118" rx="8" fill="#e6f4ef" stroke="#0f6e56" stroke-width="1.4"/>
+<use href="#i-log" x="1212" y="104" width="24" height="24" fill="none" stroke="#0f6e56" stroke-width="2.2"/>
+<text x="1244" y="121" font-size="12" fill="#1f2937" font-weight="bold" text-anchor="start">⑤ 집계</text>
+<text x="1214" y="142" font-size="9.8" fill="#1f2937" font-weight="normal" text-anchor="start">준수율 = (준수 추천 + 준수 대안)</text>
+<text x="1214" y="156" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">    ÷ (전체 − 해당 없음 − 판정 불가)</text>
+<text x="1214" y="170" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">하한선: 판정 불가 = 비준수로 계산</text>
+<text x="1214" y="184" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">집단 × 지침별로 보고</text>
+<rect x="330" y="250" width="260" height="66" rx="8" fill="#fff" stroke="#534ab7" stroke-width="1.4"/>
+<use href="#i-person" x="342" y="271" width="22" height="24" fill="none" stroke="#534ab7" stroke-width="2.2"/>
+<text x="374" y="289" font-size="11.5" fill="#1f2937" font-weight="bold" text-anchor="start">표본 20건 (+무작위 100건)</text>
+<rect x="620" y="250" width="260" height="66" rx="8" fill="#efedfa" stroke="#534ab7" stroke-width="1.4"/>
+<text x="634" y="272" font-size="11.5" fill="#1f2937" font-weight="bold" text-anchor="start">LLM + RAG 판정</text>
+<text x="634" y="288" font-size="9.3" fill="#534ab7" font-weight="normal" text-anchor="start">같은 카드 + 검색된 청크 5개</text>
+<text x="634" y="300" font-size="9.3" fill="#534ab7" font-weight="normal" text-anchor="start">같은 8가지 판정값을 JSON으로</text>
+<rect x="910" y="250" width="260" height="66" rx="8" fill="#efedfa" stroke="#534ab7" stroke-width="1.4"/>
+<text x="924" y="272" font-size="11.5" fill="#1f2937" font-weight="bold" text-anchor="start">규칙 판정과 비교</text>
+<text x="924" y="288" font-size="9.3" fill="#534ab7" font-weight="normal" text-anchor="start">일치율</text>
+<text x="924" y="300" font-size="9.3" fill="#534ab7" font-weight="normal" text-anchor="start">불일치 유형: LLM 오류 /</text>
+<text x="924" y="312" font-size="9.3" fill="#534ab7" font-weight="normal" text-anchor="start">규칙표 밖 조건 / 자료 부족</text>
+<rect x="1200" y="250" width="260" height="66" rx="8" fill="#efedfa" stroke="#534ab7" stroke-width="1.4"/>
+<text x="1214" y="272" font-size="11.5" fill="#1f2937" font-weight="bold" text-anchor="start">임상의 판정 (불일치만)</text>
+<text x="1214" y="288" font-size="9.3" fill="#534ab7" font-weight="normal" text-anchor="start">정당한 이탈 확정</text>
+<text x="1214" y="300" font-size="9.3" fill="#534ab7" font-weight="normal" text-anchor="start">보고서 2종 블라인드 채점</text>
+<path d="M593 283 L617 283" stroke="#534ab7" stroke-width="1.6" fill="none" marker-end="url(#arP)" color="#534ab7"/>
+<path d="M883 283 L907 283" stroke="#534ab7" stroke-width="1.6" fill="none" marker-end="url(#arP)" color="#534ab7"/>
+<path d="M1173 283 L1197 283" stroke="#534ab7" stroke-width="1.6" fill="none" marker-end="url(#arP)" color="#534ab7"/>
+<path d="M170.0 210 L170.0 283 L327 283" stroke="#534ab7" stroke-width="1.4" fill="none" stroke-dasharray="5 3" marker-end="url(#arP)"/>
+<path d="M1040.0 210 L1040.0 247" stroke="#ba7517" stroke-width="1.4" fill="none" stroke-dasharray="5 3" marker-end="url(#arO)"/>
+<text x="40" y="350" font-size="13.5" fill="#1f2937" font-weight="bold" text-anchor="start">B  요법 비교 분기표 — 판정은 환자 단위 · 이분법이다 (예: 중증 CAP, MRSA · 녹농균 위험 없음 → S = ceftriaxone + azithromycin, A = levofloxacin)</text>
+<rect x="40" y="372" width="1420" height="52" rx="6" fill="#e6f4ef" opacity="0.55"/>
+<use href="#i-pill" x="52" y="392" width="20" height="20" fill="none" stroke="#0f6e56" stroke-width="2.2"/>
+<text x="80" y="398" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">R = S</text>
+<rect x="440" y="385" width="78.30000000000001" height="19" rx="9.5" fill="#e6f4ef" stroke="#0f6e56" stroke-width="1.2"/><text x="449" y="399" font-size="10.5" fill="#0f6e56" font-weight="bold" text-anchor="start">준수 (추천)</text>
+<text x="440" y="420" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">예: ceftriaxone + azithromycin</text>
+<rect x="40" y="430" width="1420" height="52" rx="6" fill="#fff" opacity="0.55"/>
+<use href="#i-pill" x="52" y="450" width="20" height="20" fill="none" stroke="#0f6e56" stroke-width="2.2"/>
+<text x="80" y="456" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">R = A</text>
+<rect x="440" y="443" width="78.30000000000001" height="19" rx="9.5" fill="#e6f4ef" stroke="#0f6e56" stroke-width="1.2"/><text x="449" y="457" font-size="10.5" fill="#0f6e56" font-weight="bold" text-anchor="start">준수 (대안)</text>
+<text x="440" y="478" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">예: levofloxacin 단독 · 알레르기 정보가 없어 증빙 없이 인정, 비율은 따로 보고</text>
+<rect x="40" y="488" width="1420" height="52" rx="6" fill="#fdf3e0" opacity="0.55"/>
+<use href="#i-pill" x="52" y="508" width="20" height="20" fill="none" stroke="#ba7517" stroke-width="2.2"/>
+<text x="80" y="514" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">R ⊃ S (추천 + 추가 약제)</text>
+<rect x="440" y="501" width="364.20000000000005" height="19" rx="9.5" fill="#fdf3e0" stroke="#ba7517" stroke-width="1.2"/><text x="449" y="515" font-size="10.5" fill="#ba7517" font-weight="bold" text-anchor="start">추가 약제가 다른 위험 행으로 설명되면 준수, 아니면 비준수 (과잉)</text>
+<text x="440" y="536" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">예: + vancomycin: MRSA 분리력 있으면 준수, 없으면 과잉</text>
+<rect x="40" y="546" width="1420" height="52" rx="6" fill="#fff" opacity="0.55"/>
+<use href="#i-pill" x="52" y="566" width="20" height="20" fill="none" stroke="#b42318" stroke-width="2.2"/>
+<text x="80" y="572" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">R ⊂ S (추천 중 일부만)</text>
+<rect x="440" y="559" width="173.49999999999994" height="19" rx="9.5" fill="#fdecea" stroke="#b42318" stroke-width="1.2"/><text x="449" y="573" font-size="10.5" fill="#b42318" font-weight="bold" text-anchor="start">비준수 (누락) — 50%가 아니다</text>
+<text x="440" y="594" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">예: ceftriaxone 단독 (azithromycin 누락). 보조 지표로 구성요소 일치율만 따로</text>
+<rect x="40" y="604" width="1420" height="52" rx="6" fill="#fdecea" opacity="0.55"/>
+<use href="#i-pill" x="52" y="624" width="20" height="20" fill="none" stroke="#b42318" stroke-width="2.2"/>
+<text x="80" y="630" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">R ∩ S = ∅</text>
+<rect x="440" y="617" width="115.89999999999999" height="19" rx="9.5" fill="#fdecea" stroke="#b42318" stroke-width="1.2"/><text x="449" y="631" font-size="10.5" fill="#b42318" font-weight="bold" text-anchor="start">비준수 (다른 약제)</text>
+<text x="440" y="652" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">예: cefepime + vancomycin (위험인자 없음)</text>
+<rect x="40" y="662" width="1420" height="52" rx="6" fill="#fff" opacity="0.55"/>
+<use href="#i-pill" x="52" y="682" width="20" height="20" fill="none" stroke="#6b7280" stroke-width="2.2"/>
+<text x="80" y="688" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">R 없음 · 수술 예방 cefazolin 단독 · 바이러스 동반</text>
+<rect x="440" y="675" width="192.79999999999998" height="19" rx="9.5" fill="#f1f5f9" stroke="#6b7280" stroke-width="1.2"/><text x="449" y="689" font-size="10.5" fill="#6b7280" font-weight="bold" text-anchor="start">해당 없음 (분모 제외, 수만 보고)</text>
+<text x="440" y="710" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">예: cefazolin 단독 310명</text>
+<rect x="40" y="720" width="1420" height="52" rx="6" fill="#f1f5f9" opacity="0.55"/>
+<use href="#i-pill" x="52" y="740" width="20" height="20" fill="none" stroke="#6b7280" stroke-width="2.2"/>
+<text x="80" y="746" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">조건에 '모름'이 있고 후보 행 결론이 다름</text>
+<rect x="440" y="733" width="245.29999999999998" height="19" rx="9.5" fill="#f1f5f9" stroke="#6b7280" stroke-width="1.2"/><text x="449" y="747" font-size="10.5" fill="#6b7280" font-weight="bold" text-anchor="start">판정 불가 (분모 제외, 하한선에서는 비준수)</text>
+<text x="440" y="768" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">예: vital 없어 중증도 미확정 (약 29%)</text>
+<rect x="40" y="778" width="1420" height="52" rx="6" fill="#fff" opacity="0.55"/>
+<use href="#i-pill" x="52" y="798" width="20" height="20" fill="none" stroke="#534ab7" stroke-width="2.2"/>
+<text x="80" y="804" font-size="11" fill="#1f2937" font-weight="bold" text-anchor="start">비준수인데 카드에 사유가 있음</text>
+<rect x="440" y="791" width="265.29999999999995" height="19" rx="9.5" fill="#efedfa" stroke="#534ab7" stroke-width="1.2"/><text x="449" y="805" font-size="10.5" fill="#534ab7" font-weight="bold" text-anchor="start">정당한 이탈 (임상의 · LLM이 근거 제시한 것만)</text>
+<text x="440" y="826" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">예: 녹농균 분리력으로 cefepime 선택</text>
+<text x="40" y="844" font-size="13.5" fill="#1f2937" font-weight="bold" text-anchor="start">C  미리 정해 둔 처리 규칙</text>
+<text x="40" y="864" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• 카드 변수가 지침에 없다 (젖산, CRP 등)</text>
+<text x="390" y="864" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ 판정에 안 쓴다. 보고서의 맥락으로만 준다</text>
+<text x="40" y="881" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• 지침 조건이 카드에 없다 (알레르기, 영상 다엽 침윤)</text>
+<text x="390" y="881" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ '모름'으로 둔다. 대안 요법은 증빙 없이 준수(대안)로 인정</text>
+<text x="40" y="898" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• 항생제 2개 중 1개만 지침에 있다</text>
+<text x="390" y="898" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ 환자 단위 비준수(누락). 약제 단위 50%로 세지 않는다</text>
+<text x="40" y="915" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• 추천보다 넓게 썼다</text>
+<text x="390" y="915" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ 위험인자가 카드에 있으면 준수, 없으면 비준수(과잉)</text>
+<text x="40" y="932" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• 국내 · 해외 지침 결론이 다르다</text>
+<text x="390" y="932" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ 각각 판정해 둘 다 보고. 규칙표의 relation(common / conflict)</text>
+<text x="760" y="864" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• 용량 · 경로 · 시기</text>
+<text x="1110" y="864" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ 선택과 분리해 따로 집계. mg/kg 약제는 체중 없으면 판정 불가</text>
+<text x="760" y="881" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• 지침이 다루지 않는 환자 (예방적 투여, 바이러스 폐렴 동반)</text>
+<text x="1110" y="881" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ 해당 없음. 수를 보고하고 분모에서 뺀다</text>
+<text x="760" y="898" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• 판정 불가가 많다</text>
+<text x="1110" y="898" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ 분모에서 빼되, 비준수로 본 하한선 준수율을 같이 낸다</text>
+<text x="760" y="915" font-size="9.8" fill="#1f2937" font-weight="bold" text-anchor="start">• LLM 판정이 규칙과 다르다</text>
+<text x="1110" y="915" font-size="9.8" fill="#6b7280" font-weight="normal" text-anchor="start">→ 표본에서만 비교. 준수율은 규칙으로만 계산한다</text>
+<rect x="40" y="955" width="1420" height="30" rx="6" fill="#e6f4ef" stroke="#0f6e56" stroke-width="1.4"/>
+<text x="54" y="975" font-size="10.8" fill="#0f6e56" font-weight="bold" text-anchor="start">준수율(선택) = (준수 추천 + 준수 대안) ÷ (전체 − 해당 없음 − 판정 불가)   ·   함께 보고: 해당 없음 n, 판정 불가 n, 비준수 유형별 n, 대안 비율, 하한선</text>
+</svg>

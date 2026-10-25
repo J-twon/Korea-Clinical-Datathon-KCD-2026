@@ -1,0 +1,4 @@
+hashed_id,hospital,group,age,sex,anchor_year_group,ed_visit,first_icu_type,t_icu_in,t_infection_suspected,suspicion_rule,community_acquired,t_first_antibiotic,sepsis_by_code,prior_admission_90d,prior_iv_abx_90d,prior_mrsa_1y,prior_pseudomonas_1y,dm,ckd,copd,bronchiectasis,hf,liver,cancer,immuno,pregnancy,uro_obstruction,alcohol
+a1,003,pneumonia,71,M,2017 - 2019,1,MICU,5,2,culture_first,1,3,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+a2,003,pneumonia,66,M,2017 - 2019,1,MICU,4,,,0,,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+a3,004,uti,80,F,2020 - 2022,1,MICU,4,1,antibiotic_first,1,1,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0

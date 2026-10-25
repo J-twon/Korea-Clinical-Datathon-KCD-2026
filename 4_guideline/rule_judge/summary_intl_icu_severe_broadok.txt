@@ -1,0 +1,41 @@
+해외 지침 규칙 판정 (M03 CAP 2019 · M07 cUTI 2025) · 옵션: icu_severe=True class_equiv=False sepsis_broad_ok=True
+
+[pneumonia] n=4,875 · 해당 없음 135 · 판정 불가 0 · 판정된 4,740
+   준수(추천)          594 (12.5% of 판정된)
+   준수(대안)            0 (0.0% of 판정된)
+   비준수(누락)         438 (9.2% of 판정된)
+   비준수(과잉)         614 (13.0% of 판정된)
+   비준수(다른 약제)    3,094 (65.3% of 판정된)
+   준수율 = 594/4,740 = 12.5%  · 하한선(판정 불가=비준수) = 12.5%
+
+[uti] n=4,523 · 해당 없음 175 · 판정 불가 432 · 판정된 3,916
+   준수(추천)        2,179 (55.6% of 판정된)
+   준수(대안)           25 (0.6% of 판정된)
+   비준수(누락)           0 (0.0% of 판정된)
+   비준수(과잉)       1,254 (32.0% of 판정된)
+   비준수(다른 약제)      458 (11.7% of 판정된)
+   준수율 = 2,204/3,916 = 56.3%  · 하한선(판정 불가=비준수) = 50.7%
+
+[pneumonia] 시기별 준수율 (판정된 환자 기준)
+   2008 - 2010:  12.6%  (판정된 1,494 · 판정 불가 0)
+   2011 - 2013:   9.5%  (판정된 976 · 판정 불가 0)
+   2014 - 2016:  11.6%  (판정된 940 · 판정 불가 0)
+   2017 - 2019:  13.0%  (판정된 787 · 판정 불가 0)
+   2020 - 2022:  18.8%  (판정된 543 · 판정 불가 0)
+[pneumonia] 판정값별 상위 요법
+   준수(추천)       azithromycin + ceftriaxone (461) / ceftriaxone + levofloxacin (56) / azithromycin + cefepime + vancomycin (19) / cefepime + levofloxacin + vancomycin (14)
+   비준수(과잉)      azithromycin + ceftriaxone + vancomycin (115) / azithromycin + cefepime + ceftriaxone + vancomycin (78) / azithromycin + ceftriaxone + piperacillin/tazobactam + vancomycin (40) / azithromycin + ceftriaxone + levofloxacin (34)
+   비준수(다른 약제)   cefepime + vancomycin (383) / piperacillin/tazobactam + vancomycin (273) / azithromycin + cefepime + vancomycin (170) / cefepime + metronidazole + vancomycin (131)
+
+[uti] 시기별 준수율 (판정된 환자 기준)
+   2008 - 2010:  54.7%  (판정된 1,275 · 판정 불가 196)
+   2011 - 2013:  55.7%  (판정된 835 · 판정 불가 87)
+   2014 - 2016:  58.8%  (판정된 769 · 판정 불가 65)
+   2017 - 2019:  57.0%  (판정된 668 · 판정 불가 47)
+   2020 - 2022:  56.4%  (판정된 369 · 판정 불가 37)
+[uti] 판정값별 상위 요법
+   준수(추천)       ceftriaxone (876) / ciprofloxacin (395) / piperacillin/tazobactam + vancomycin (117) / cefepime + vancomycin (103)
+   준수(대안)       meropenem (8) / cefpodoxime (7) / gentamicin + vancomycin (4) / amoxicillin/clavulanate (3)
+   비준수(과잉)      cefepime + metronidazole + vancomycin (92) / ciprofloxacin + metronidazole (53) / cefazolin + ciprofloxacin (48) / piperacillin/tazobactam + vancomycin (48)
+   비준수(다른 약제)   vancomycin (93) / nitrofurantoin (64) / cefazolin + vancomycin (59) / ampicillin/sulbactam (35)
+   판정 불가        trimethoprim/sulfamethoxazole (55) / piperacillin/tazobactam + vancomycin (54) / cefepime + vancomycin (53) / ceftriaxone + vancomycin (35)
