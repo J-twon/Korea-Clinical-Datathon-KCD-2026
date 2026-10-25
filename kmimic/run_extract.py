@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
-"""K-MIMIC 추출을 에이전트 없이 직접 실행 — pod 터미널에서:
-    python3 run_extract.py --hospitals=005,006,004,202,009 --out=DATA/raw [--prefix] [--test]
-kmimic_extract.sql 의 쿼리 3개를 데이터셋(기관)마다 실행해 CSV 로 바로 저장한다. LLM 이 행을 중계하지 않으므로 엔진 속도만 든다.
-이미 있는 파일은 건너뛰므로 끊기면 같은 명령으로 다시 돌리면 이어진다.
-
-연결은 아래 run_sql() 하나만 플랫폼 방식으로 채우면 된다. khdp.ai 에게는 이렇게만 부탁한다:
-  "run_extract.py 의 run_sql(sql, dataset) 함수만, 네가 SQL 을 실행할 때 쓰는 연결 방식으로 채워 줘. 다른 줄은 고치지 마. 그리고 실행 명령을 알려 줘."
+"""K-MIMIC 추출 실행기:
+    python3 run_extract.py --hospitals=001,003,004,005,006,009,202 --out=DATA/raw [--prefix] [--test]
+kmimic_extract.sql 의 쿼리 3개를 데이터셋(기관)마다 실행해 CSV 로 바로 저장한다. 이미 있는 파일은 건너뛰므로 끊기면 같은 명령으로 다시 돌리면 이어진다.
+연결은 아래 run_sql() 하나만 실행 환경의 SQL 클라이언트로 채운다.
 옵션:
   --prefix   테이블 이름 앞에 데이터셋 접두어가 필요한 환경이면 ADMISSIONS → "kmimic-emr-003".ADMISSIONS 로 자동 치환
   --test     각 쿼리 끝에 LIMIT 5 를 붙여 연결 · 문법만 확인 (파일은 *_test.csv)
@@ -24,10 +21,10 @@ def run_sql(sql, dataset):
     # import sqlalchemy as sa
     # eng = sa.create_engine("trino://USER@HOST:443/CATALOG/" + dataset)
     # with eng.connect() as c: r = c.execute(sa.text(sql)); return list(r.keys()), r.fetchall()
-    # 예 3) 플랫폼 SDK (khdp.ai 가 내부적으로 쓰는 것)
+    # 예 3) 플랫폼 SDK
     # from some_khdp_sdk import query
     # res = query(sql, dataset=dataset); return res.columns, res.rows
-    raise NotImplementedError("run_sql() 을 플랫폼의 SQL 실행 방식으로 채우세요 (위 예시 중 하나).")
+    raise NotImplementedError("run_sql() 을 SQL 실행 환경에 맞게 채우세요 (위 예시 중 하나).")
 # ===========================================================================
 
 TABLES = ("ADMISSIONS", "PATIENTS", "ICUSTAYS", "DIAGNOSES_ICD", "PRESCRIPTIONS", "MICROBIOLOGYEVENTS", "PROCEDUREEVENTS")

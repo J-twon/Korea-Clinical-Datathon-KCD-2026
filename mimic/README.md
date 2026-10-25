@@ -6,8 +6,6 @@ K-MIMIC은 플랫폼 안에서 같은 컬럼 구조로 뽑아 같은 코드로 �
 ## 폴더
 - `code/extract_mimic_cohort.py` — MIMIC-IV v3.1 csv.gz → `data/*.csv` (표준 라이브러리만, 전체 약 20–30분. `--skip-events`면 3분).
 - `code/build_notebook.py` — 노트북을 만들고 실행해 출력까지 심는다 (jupyter 없이 동작).
-- `code/analyze_kmimic_cohort.py` — CSV만으로 단계별 n · 집단 요약을 내는 공용 코드 (K-MIMIC 결과에도 그대로 사용).
-- `code/rename_columns.py` — 이전 버전 CSV의 컬럼 이름을 새 이름으로 바꾼다 (재추출 없이 맞출 때).
 - `docs/bigquery_sepsis3.sql` — mimic-code 공식 Sepsis-3 표를 BigQuery에서 뽑는 쿼리. 결과를 `data/sepsis3_mimic_code.csv`로 두면 노트북이 결합한다.
 - `notebooks/mimic_pna_uti.ipynb` — 데이터 확인 → 코호트 → 패혈증 분류 → 집단 요약 → 타이밍 → 매핑 → 사례 카드 → 결과 저장.
 - `data/` — 추출 CSV (아래 정의). **환자 단위 자료: PhysioNet 자격자만. 외부 공유 · 업로드 금지.**

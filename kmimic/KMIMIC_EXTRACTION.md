@@ -1,7 +1,6 @@
-# K-MIMIC 추출 · 판정 실행 안내 (플랫폼 안에서 직접 실행)
+# K-MIMIC 추출 · 판정 실행 안내
 
-khdp.ai 에이전트를 거치지 않고 K-MIMIC 원천 테이블에서 직접 뽑는다. SQL 3개로 CSV 3개를 만들고, 나머지(의심 시각 · 초기 요법 · 카드 · 판정 · 집계)는 이 폴더의 파이썬이 한다.
-환자 단위 파일은 전부 플랫폼 안에 남고, 반출은 집계 텍스트뿐이다.
+K-MIMIC 원천 테이블에서 SQL 3개로 CSV 3개를 만들고, 나머지(의심 시각 · 초기 요법 · 카드 · 판정 · 집계)는 이 폴더의 파이썬(표준 라이브러리만)이 한다. 환자 단위 파일은 플랫폼 안에 두고 집계 텍스트만 내보낸다.
 
 ```
  K-MIMIC 원천 테이블                      파이썬 (이 폴더, 표준 라이브러리만)
@@ -9,13 +8,13 @@ khdp.ai 에이전트를 거치지 않고 K-MIMIC 원천 테이블에서 직접 �
  │ ADMISSIONS   │ ───────▶ (입원 1건=1행)   │ ② derive   의심 시각·초기 요법 │
  │ PATIENTS     │  쿼리 2  antibiotics.csv │ ③ cards    사례 카드(JSON)     │ ──▶ summary_kr.txt
  │ ICUSTAYS     │ ───────▶ (처방 1건=1행)   │ ④ judge    국내 지침 규칙 판정  │     단계별 n · 요법 상위 · 판정 분포
- │ DIAGNOSES_ICD│  쿼리 3  cultures.csv    │ ⑤ summarize 기관별 집계        │     (이것만 반출)
+ │ DIAGNOSES_ICD│  쿼리 3  cultures.csv    │ ⑤ summarize 기관별 집계        │     (이것만 내보냄)
  │ PRESCRIPTIONS│ ───────▶ (검체 1건=1행)   └───────────────────────────┘
  │ MICROBIOLOGY │
  └──────────────┘
 ```
 
-파일: `kmimic_extract.sql`(쿼리 3개) · `analyze_kmimic_cohort.py` · `make_cards_min.py` · `rule_judge_kr.py` · `aware_table.py` + `aware_2025.csv`(WHO AWaRe 2025 분류) · `atc_to_ingredient.csv` · `test_data/`(합성 3명, 동작 확인용) · `khdp_requests/`(이전에 khdp.ai 에 보낸 요청문, 기록용) · `REQUEST_TO_KHDP_AI.md`(에이전트에게 그대로 실행시키는 지시문).
+파일: `kmimic_extract.sql`(쿼리 3개) · `run_extract.py`(쿼리 실행기) · `analyze_kmimic_cohort.py` · `make_cards_min.py` · `aware_table.py` + `aware_2025.csv`(WHO AWaRe 2025 분류) · `atc_to_ingredient.csv` · `test_data/`(합성 3명, 동작 확인용). 국내 지침 판정기 `rule_judge_kr.py` 는 `../guideline/rule_judge/` 에 있다(플랫폼에 올릴 때 이 폴더로 복사).
 
 ---
 
@@ -23,7 +22,7 @@ khdp.ai 에이전트를 거치지 않고 K-MIMIC 원천 테이블에서 직접 �
 
 | 항목 | 결정 |
 |---|---|
-| 기관 · 데이터셋 | 플랫폼에 기관별 데이터셋 `kmimic-emr-001 … -202` 가 따로 있고 테이블 구조는 같음 → **데이터셋마다 같은 쿼리 3개를 실행**해 기관별 CSV 로 저장 후 이어 붙임. 본 분석 = **001 003 004 005 006 009**, **202 는 따로 보고**(GSN · 용량 없음, EMAR event_txt 없음, ICD10CM; 카드 단계에서 `--hospitals=202` 로 분리). `K-MIMIC-MORTAL`(SNUH 사망 subset) 은 쓰지 않음. `SYN-ICU`(합성) 는 문법 확인용으로만 |
+| 기관 · 데이터셋 | 기관별 데이터셋(`kmimic-emr-001 … -202`)의 테이블 구조는 같다 → **데이터셋마다 같은 쿼리 3개를 실행**해 기관별 CSV 로 저장 후 이어 붙인다. 본 분석 = **001 003 004 005 006 009**, **202 는 따로**(GSN · 용량 없음, EMAR event_txt 없음, ICD10CM; 카드 단계에서 `--hospitals=202` 로 분리) |
 | 월 배치 중복 | 키(hadm_id / subject_id / stay_id / 처방 키)당 **최신 src_batch_id 1행** |
 | 분석 단위 | 환자별 **첫 ICU 재실 1회**(stay 간격 ≤ 60분이면 병합)의 입원 1건. 재입실 · 재입원 제외 |
 | 성인 | 입원 시 ≥ 18세. `anchor_age` 문자열 파싱: `N years` → N + (입원연도 − anchor_year), `90 years or older` → 90, months/days → 0 |
@@ -44,7 +43,7 @@ khdp.ai 에이전트를 거치지 않고 K-MIMIC 원천 테이블에서 직접 �
 
 ---
 
-## 2. 쓰는 테이블 · 컬럼 (khdp.ai Q1 답변 기준)
+## 2. 쓰는 테이블 · 컬럼
 
 | 테이블 | 쓰는 컬럼 | 주의 |
 |---|---|---|
@@ -61,9 +60,7 @@ khdp.ai 에이전트를 거치지 않고 K-MIMIC 원천 테이블에서 직접 �
 ## 3. 실행 순서
 
 ### ① SQL → CSV 3개  (`kmimic_extract.sql`)
-가장 빠른 방법은 `run_extract.py`: `run_sql()` 한 함수만 플랫폼 연결 방식으로 채우면(khdp.ai 에게 그 함수만 채우게 한다) 데이터셋마다 쿼리 3개를 실행해 CSV 를 바로 쓴다. 에이전트가 결과 행을 중계하면 시간 단위로 느려진다. 기관 순서는 처방 행 수가 적은 쪽부터: 005 → 202 → 006 → 004 → 009 → 001(3,500만 행, 시간 없으면 생략).
-
-데이터셋(= 기관) 하나를 열고 파일 안의 쿼리 1 · 2 · 3 을 각각 실행해 **기관별 파일**로 저장한다. 7개 데이터셋에 반복(21회). 세 쿼리는 같은 공통 블록(B1~B6)으로 시작하므로 각각 단독 실행된다. 테이블 이름 앞에 데이터셋 접두어가 필요한 환경이면 `ADMISSIONS` → `"kmimic-emr-003".ADMISSIONS` 처럼 6개 테이블명만 바꾼다.
+`run_extract.py` 의 `run_sql()` 한 함수만 SQL 실행 환경에 맞게 채우면 데이터셋마다 쿼리 3개를 실행해 CSV 로 바로 저장한다(이미 있는 파일은 건너뜀). 수동으로 할 때는 데이터셋(= 기관) 하나를 열고 쿼리 1 · 2 · 3 을 각각 실행해 **기관별 파일**로 저장한다. 세 쿼리는 같은 공통 블록(B1~B6)으로 시작하므로 각각 단독 실행된다. 테이블 이름 앞에 데이터셋 접두어가 필요한 환경이면 `ADMISSIONS` → `"kmimic-emr-003".ADMISSIONS` 처럼 6개 테이블명만 바꾼다.
 
 | 쿼리 | 저장 파일 | 한 행 | 핵심 컬럼 |
 |---|---|---|---|
@@ -83,7 +80,7 @@ w = csv.DictWriter(open('DATA/id_map.csv', 'w', newline=''), k); w.writeheader()
 f = [c for c in r[0] if c not in k[1:]]; w = csv.DictWriter(open('DATA/cohort.csv', 'w', newline=''), f, extrasaction='ignore'); w.writeheader(); w.writerows(r)"
 ```
 - hashed_id 는 기관 + hadm_id 로 만들어 기관 간 충돌이 없다.
-- 방언이 다르면 파일 머리의 치환표(date_diff · MIN_BY · regexp_* · md5 · `"group"`)만 손본다. SYN-ICU 에서 쿼리 1 만 먼저 돌려 문법 오류를 잡으면 빠르다(구조가 같을 때만).
+- 방언이 다르면 파일 머리의 치환표(date_diff · MIN_BY · regexp_* · md5 · `"group"`)만 손본다.
 
 ### ② 의심 시각 · 초기 요법 (derive)
 ```bash
@@ -98,7 +95,7 @@ python3 make_cards_min.py DATA DATA/cards_202.jsonl  atc_to_ingredient.csv --abx
 ```
 화면의 `미매핑: {...}` 에 ATC 코드가 나오면 `atc_to_ingredient.csv` 에 한 줄 추가하고 다시 돌린다. 기관별 보고가 필요하면 `--hospitals=003` 처럼 하나씩.
 
-### ④ 국내 지침 규칙 판정
+### ④ 국내 지침 규칙 판정  (`../guideline/rule_judge/rule_judge_kr.py` 를 이 폴더로 복사)
 ```bash
 python3 rule_judge_kr.py --icu-severe --class-equiv DATA/cards_main.jsonl DATA/verdicts_main.jsonl > DATA/summary_kr_main.txt
 python3 rule_judge_kr.py --icu-severe --class-equiv DATA/cards_202.jsonl  DATA/verdicts_202.jsonl  > DATA/summary_kr_202.txt
@@ -124,9 +121,9 @@ python3 make_cards_min.py test_data test_data/cards.jsonl atc_to_ingredient.csv 
 python3 rule_judge_kr.py --icu-severe --class-equiv test_data/cards.jsonl test_data/verdicts.jsonl
 ```
 
-### 반출하는 것 / 안 하는 것
-- 반출: `summary_kr_*.txt`, `summary_cohort.txt`, `summary_aware_*.txt`, 기관별 판정 분포(verdict 별 n), 미매핑 목록. 전부 집계 텍스트.
-- 반출 금지: cohort · antibiotics · cultures CSV, id_map, cards · verdicts jsonl (환자 단위).
+### 플랫폼 밖으로 내보내는 것
+- 집계 텍스트만: `summary_kr_*.txt`, `summary_cohort.txt`, `summary_aware_*.txt`, 기관별 판정 분포(verdict 별 n), 미매핑 목록.
+- 환자 단위 파일(cohort · antibiotics · cultures CSV, id_map, cards · verdicts jsonl)은 내보내지 않는다.
 
 ---
 
@@ -146,7 +143,7 @@ python3 rule_judge_kr.py --icu-severe --class-equiv test_data/cards.jsonl test_d
 
 ---
 
-## 5. K-MIMIC 함정 (Q1~Q7 요약)
+## 5. K-MIMIC 데이터 특성 (코드가 전제하는 것)
 
 1. 날짜가 환자별로 이동돼 3000년대까지 있음 → 절대 시각 · epoch 변환 금지. 상대 시간만.
 2. 월 배치 중복(src_batch_id) → DISTINCT 가 아니라 **키당 최신 배치 1행**.
@@ -156,6 +153,6 @@ python3 rule_judge_kr.py --icu-severe --class-equiv test_data/cards.jsonl test_d
 6. PRESCRIPTIONS.gsn 이 ATC(202 는 전부 NULL). drug 는 상품명(괄호 안 성분명은 일부만).
 7. EMAR charttime 이 001 · 005 · 009 에서 0093~6280년 → 투여 시각 사용 금지. 202 는 event_txt 없음.
 8. MICROBIOLOGYEVENTS: charttime = 채취, storetime = 보고(평균 71~168h 지연). 검체명 한글 · 영문 혼용, 기관마다 다름. 선별 검체가 많음(직장 VRE/CRE, 비강 MRSA, stool screen).
-9. SOFA 항목 없음. PaO2 는 004 만 확정, 소변량 · lactate 단위 혼재 → SOFA 포기. 승압제는 001 · 003 · 006 datetimeevents / 004 · 005 inputevents / 009 chartevents 라고 했으나 Q1 테이블 목록에 DATETIMEEVENTS 가 없음 → 여기서는 PRESCRIPTIONS ATC 로 대신함.
+9. SOFA 점수 항목 없음. PaO2 · 소변량 · lactate 는 기관별 ITEMID 와 단위가 달라 SOFA 를 계산하지 않는다. 승압제는 기관별 이벤트 테이블 대신 PRESCRIPTIONS 의 ATC 로 판정한다.
 10. 202: ICD10CM, gsn · 용량 없음, EDSTAY 1행, 승압제 항목 미확인 → 별도 코호트로 보고.
 11. ED 처방이 PRESCRIPTIONS 에 hadm_id 로 연결되는지 미확인 → t_first_antibiotic 중앙값이 MIMIC(8~15h) 보다 많이 크면 의심.

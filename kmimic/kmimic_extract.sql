@@ -1,10 +1,9 @@
 -- ============================================================================================================
--- K-MIMIC 추출 SQL — DuckDB 방언판 (khdp.ai 가 pod 에서 DuckDB 로 CSV 를 읽어 실행하는 것이 확인됨: md5(), regexp_matches() 로 치환해 둠. 그 외는 kmimic_extract.sql 과 동일)
+-- K-MIMIC 추출 SQL — 폐렴·요로감염 성인 첫 ICU 입원 코호트 (Korea Clinical Datathon 2026)
 -- 플랫폼의 K-MIMIC 은 기관별 데이터셋(kmimic-emr-001 … kmimic-emr-202)으로 나뉘어 있고 테이블 구조는 같다.
 --   → 데이터셋 하나를 열고 아래 쿼리 3개를 그대로 실행, 결과를 기관별 CSV 로 저장. 작은 기관부터: 005 → 202 → 006 → 004 → 009 → 001 (003 은 완료). 기관별 CSV 를 이어 붙인다(KMIMIC_EXTRACTION.md ①).
 --   큰 테이블은 기관당 두 번만 읽는다: 쿼리 1 = 작은 테이블만(수 초), 쿼리 2 = PRESCRIPTIONS 1회, 쿼리 3 = MICROBIOLOGYEVENTS 1회. 과거력 · 승압제 플래그는 파이썬(derive)이 그 결과로 계산한다.
 --   데모(시간 부족)일 때: 공통 블록 끝의 cohort0 정의를 아래 주석 줄로 바꾸면 최근 입원 300명만 뽑는다(스캔 자체는 줄지 않지만 조인 · 출력이 준다).
---   K-MIMIC-MORTAL(SNUH 사망 subset) 과 SYN-ICU(합성) 에는 돌리지 않는다. SYN-ICU 는 문법 확인용으로만.
 -- 쿼리 3개는 각각 단독으로 실행된다(앞부분 공통 블록 [B1~B6] 이 세 번 반복됨):
 --   쿼리 1 → cohort_<기관>.csv      쿼리 2 → antibiotics_<기관>.csv      쿼리 3 → cultures_<기관>.csv
 -- 그다음은 파이썬: analyze_kmimic_cohort.py derive (의심 시각·초기 요법) → make_cards_min.py → rule_judge_kr.py.
@@ -12,12 +11,12 @@
 -- 모든 시각은 t0(병원 도착 = min(edregtime, admittime)) 기준 상대 시간(시간 단위). 절대 날짜는 출력하지 않는다.
 -- src_hospital_id IN (...) 은 안전장치일 뿐이다(데이터셋 = 기관 하나). 테이블 이름 앞에 데이터셋 접두어가 필요한 환경이면 ADMISSIONS → "kmimic-emr-003".ADMISSIONS 식으로 6개 테이블명만 바꾼다.
 --
--- 방언 메모 (khdp.ai 가 쓴 date_diff('hour', a, b) 표기 기준으로 작성). 다른 엔진이면:
+-- 방언 메모 (Trino/Presto 표기로 작성). 다른 엔진이면:
 --   date_diff('minute', a, b)   → Spark: (unix_timestamp(b) - unix_timestamp(a)) / 60  ※ 3000년대 날짜라 epoch 변환은 피하고 timestampdiff(MINUTE, a, b) 가 있으면 그것
 --   MIN_BY(x, t)                → Spark 동일 / PostgreSQL: (array_agg(x ORDER BY t))[1]
 --   regexp_extract(s, p, 1)     → PostgreSQL: substring(s from p)
---   regexp_matches(s, p)           → Spark: s RLIKE p / PostgreSQL: s ~ p
---   md5(s)     → Spark·PostgreSQL: md5(s)
+--   regexp_like(s, p)           → Spark: s RLIKE p / PostgreSQL: s ~ p
+--   to_hex(md5(to_utf8(s)))     → Spark·PostgreSQL: md5(s)
 --   "group" (예약어 별칭)        → 안 되면 cohort_group 으로 바꾸고 analyze 의 COL["group"] 도 같이 바꾼다
 --   timestamp 컬럼이 VARCHAR 로 올라와 있으면 CAST(col AS timestamp) 를 먼저 씌운다
 -- ============================================================================================================
@@ -93,7 +92,7 @@ prior_adm AS (SELECT DISTINCT c.hospital, c.hadm_id FROM cohort0 c
               JOIN adm a ON a.src_hospital_id = c.hospital AND a.subject_id = c.subject_id AND a.hadm_id <> c.hadm_id
               WHERE a.dischtime < c.t0 AND date_diff('day', a.dischtime, c.t0) <= 90)
 -- ===== 출력 1: cohort.csv (한 행 = 입원 1건). 마지막 3개 컬럼(hadm_id, subject_id, stay_id)은 id_map.csv 로 떼어 두고 공유본에서는 지운다
-SELECT md5(c.hospital || '|' || c.hadm_id) AS hashed_id, c.hospital, c.grp AS "group",
+SELECT to_hex(md5(to_utf8(c.hospital || '|' || c.hadm_id))) AS hashed_id, c.hospital, c.grp AS "group",
        c.age, c.sex, c.anchor_year_group, c.admission_type, c.admission_location, c.first_careunit AS first_icu_type, c.op_flag,
        CASE WHEN c.edregtime IS NOT NULL THEN 1 ELSE 0 END AS ed_visit,
        date_diff('minute', c.t0, c.edregtime) / 60.0 AS t_ed,
@@ -191,7 +190,7 @@ rx AS (SELECT * FROM (
           AND (p.gsn IS NULL OR p.gsn NOT LIKE 'A07AA%') AND (p.route IS NULL OR NOT (upper(p.route) LIKE '%TOPICAL%' OR upper(p.route) LIKE '%TOP%' OR upper(p.route) LIKE '%OPHTH%' OR upper(p.route) LIKE '%EYE%' OR upper(p.route) LIKE '%OU%' OR upper(p.route) LIKE '%OD%' OR upper(p.route) LIKE '%OS%' OR upper(p.route) LIKE '%EAR%' OR upper(p.route) LIKE '%OTIC%' OR upper(p.route) LIKE '%INHAL%' OR upper(p.route) LIKE '%NEB%' OR upper(p.route) LIKE '%IRRIG%' OR upper(p.route) LIKE '%BLADDER%' OR p.route LIKE '%외용%' OR p.route LIKE '%점안%' OR p.route LIKE '%점이%' OR p.route LIKE '%흡입%' OR p.route LIKE '%방광%' OR p.route LIKE '%국소%' OR p.route LIKE '%도포%')))
                   OR p.gsn IN ('C01CA03', 'C01CA24', 'C01CA04', 'C01CA07', 'H01BA01') OR (lower(p.drug) LIKE '%norepinephrine%' OR lower(p.drug) LIKE '%noradrenalin%' OR lower(p.drug) LIKE '%levophed%' OR lower(p.drug) LIKE '%epinephrine%' OR lower(p.drug) LIKE '%adrenalin%' OR lower(p.drug) LIKE '%dopamine%' OR lower(p.drug) LIKE '%dobutamine%' OR lower(p.drug) LIKE '%vasopressin%' OR lower(p.drug) LIKE '%pitressin%') )) x WHERE rn = 1)
 -- ===== 출력 2: antibiotics.csv (한 행 = 처방 1건). 성분명 · 계열 · AWaRe 는 atc_to_ingredient.csv 로 파이썬에서 붙인다. EMAR 투여 시각은 쓰지 않는다(001·005·009 시각 오염)
-SELECT md5(a.hospital || '|' || a.cohort_hadm) AS hashed_id, a.hospital,
+SELECT to_hex(md5(to_utf8(a.hospital || '|' || a.cohort_hadm))) AS hashed_id, a.hospital,
        CASE WHEN a.hadm_id = a.cohort_hadm THEN 1 ELSE 0 END AS hadm_is_cohort, a.is_vasopressor,
        a.drug AS drug_raw, a.gsn AS atc, a.route, a.dose_val_rx AS dose, a.dose_unit_rx AS dose_unit, a.doses_per_24_hrs AS doses_per_24h,
        date_diff('minute', a.t0, a.starttime) / 60.0 AS t_start,
@@ -276,9 +275,9 @@ cult AS (SELECT c.hospital, c.hadm_id, c.t0, m.micro_specimen_id, m.charttime, M
            AND date_diff('day', m.charttime, c.t0) <= 365 AND m.charttime <= c.dischtime
          GROUP BY c.hospital, c.hadm_id, c.t0, m.micro_specimen_id, m.charttime, m.spec_type_desc, m.test_name, m.org_name)
 -- ===== 출력 3: cultures.csv. is_culture=0 = 선별·비배양 검체(직장 VRE/CRE, 비강 MRSA, 카테터 tip, PCR, 항원) → 의심 시각 짝짓기에서 제외
-SELECT md5(x.hospital || '|' || x.hadm_id) AS hashed_id, x.hospital, x.micro_specimen_id,
+SELECT to_hex(md5(to_utf8(x.hospital || '|' || x.hadm_id))) AS hashed_id, x.hospital, x.micro_specimen_id,
        x.spec_type_desc AS spec_type, x.test_name,
-       CASE WHEN regexp_matches(upper(COALESCE(x.spec_type_desc, '') || ' ' || COALESCE(x.test_name, '')), '(^|[^A-Z])(CRE|VRE|MRSA|TIP|PCR)([^A-Z]|$)|RECTAL|NASAL|SCREEN|SURVEILLANCE|ANTIGEN|직장|비강|선별|항원') THEN 0 ELSE 1 END AS is_culture,
+       CASE WHEN regexp_like(upper(COALESCE(x.spec_type_desc, '') || ' ' || COALESCE(x.test_name, '')), '(^|[^A-Z])(CRE|VRE|MRSA|TIP|PCR)([^A-Z]|$)|RECTAL|NASAL|SCREEN|SURVEILLANCE|ANTIGEN|직장|비강|선별|항원') THEN 0 ELSE 1 END AS is_culture,
        date_diff('minute', x.t0, x.charttime) / 60.0 AS t_collect,
        date_diff('minute', x.t0, x.storetime) / 60.0 AS t_result,
        x.org_name AS organism, x.is_mrsa, x.is_pseudomonas

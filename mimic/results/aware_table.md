@@ -1,4 +1,4 @@
-# MIMIC-IV 초기 경험적 요법의 WHO AWaRe 분포 (WHO AWaRe 2025 분류, 4_guideline/pdf/W02.pdf)
+# MIMIC-IV 초기 경험적 요법의 WHO AWaRe 분포 (WHO AWaRe 2025 분류; WHO 2025 AWaRe list)
 
 ## 집단별
 | 집단 | 환자 n | 요법 있음 | 성분 건수 | Access % | Watch % | Reserve % | 환자: Access만 % | 환자: Watch 포함 % | 환자: Reserve 포함 % | Watch 상위 3 | Reserve 상위 3 |

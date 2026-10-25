@@ -1,6 +1,6 @@
-# khdp.ai Chat 에 붙여 넣는 앱 제작 요청문 (MIMIC 트랙 · 해외 지침 RAG 에이전트)
+# 앱 제작 요청문 (khdp.ai Apps · MIMIC 트랙 · 해외 지침 RAG 에이전트)
 
-사전 준비: `6_app/upload/` 폴더를 내 드라이브 `projects/abx-guideline-agent/` 에 그대로 올린다 (cards/ guidelines/ code/ results/ 와 SYSTEM_PROMPT_judge.md). 그런 뒤 아래를 한 번에 보낸다.
+드라이브 `projects/abx-guideline-agent/` 에 cards/ guidelines/ code/ results/ 와 SYSTEM_PROMPT_judge.md 를 올린 뒤 아래를 Chat 에 보낸다. 앱의 판정 · 검색 · 비교 로직은 이 저장소의 코드를 그대로 쓴다.
 
 ---
 내 드라이브 projects/abx-guideline-agent/ 의 파일로 "ICU 초기 항생제 지침 준수 판정 에이전트" 웹 앱을 만들어 주세요. 앱 이름 abx-guideline-agent. 판정 로직과 프롬프트는 제공된 파일을 그대로 쓰고 새로 만들지 마세요.

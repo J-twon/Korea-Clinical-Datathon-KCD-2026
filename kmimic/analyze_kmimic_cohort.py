@@ -1,7 +1,7 @@
 """K-MIMIC 폐렴/요로감염 코호트 — CSV 분석 코드 (표준 라이브러리만 사용, 추가 설치 불필요)
 
 두 가지로 쓴다.
-  (A) khdp.ai가 cohort.csv(t_infection_suspected, t_first_antibiotic 포함)와 antibiotics.csv를 줬을 때:
+  (A) cohort.csv 에 t_infection_suspected · t_first_antibiotic 이 이미 있을 때:
         python analyze_kmimic_cohort.py summarize --cohort cohort.csv --abx antibiotics.csv
   (B) 원자료만 있을 때(입원별 기본 정보 + 항생제 이벤트 + 배양 이벤트) culture_first / antibiotic_first 규칙으로 t_infection_suspected를 직접 계산:
         python analyze_kmimic_cohort.py derive --cohort admissions.csv --abx antibiotics.csv --cultures cultures.csv --out cohort_derived.csv
