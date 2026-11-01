@@ -70,4 +70,4 @@ Run order (MIMIC): `mimic/code/extract_mimic_cohort.py --mimic <mimic-iv-3.1 dir
 
 ## Team
 
-Minso Kim, Soyoung Park, Taewon Jung (data), Jisu Ha, Seungmin Lee, Woojin Kim (clinical evaluation). Korea Clinical Datathon 2026, Pyeongchang, 16–17 October 2026.
+Minso Kim, Soyoung Park, Taewon Jung, Jisu Ha, Seungmin Lee, Woojin Kim. Korea Clinical Datathon 2026, Pyeongchang, 16–17 October 2026.
