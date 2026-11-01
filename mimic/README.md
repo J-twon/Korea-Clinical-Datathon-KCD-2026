@@ -4,8 +4,9 @@ Korea Clinical Datathon 2026 · 항생제 가이드라인 준수 연구의 MIMIC
 K-MIMIC은 플랫폼 안에서 같은 컬럼 구조로 뽑아 같은 코드로 돌린다.
 
 ## 폴더
-- `code/extract_mimic_cohort.py` — MIMIC-IV v3.1 csv.gz → `data/*.csv` (표준 라이브러리만, 전체 약 20–30분. `--skip-events`면 3분).
+- `code/extract_mimic_cohort.py` — MIMIC-IV v3.1 csv.gz → `data/*.csv` (표준 라이브러리만, 전체 약 7분. `--skip-events`면 3분).
 - `code/build_notebook.py` — 노트북을 만들고 실행해 출력까지 심는다 (jupyter 없이 동작).
+- `code/make_final_cards.py` — 사례 카드 생성: `results/final/cards_all.jsonl`(최종 코호트 전원) · `cards_eval20.jsonl`(평가 표본) · `labels.csv` · `card_schema.md`. 값은 보고 시각(storetime) ≤ 첫 항생제 처방 시각인 것만 넣는다.
 - `docs/bigquery_sepsis3.sql` — mimic-code 공식 Sepsis-3 표를 BigQuery에서 뽑는 쿼리. 결과를 `data/sepsis3_mimic_code.csv`로 두면 노트북이 결합한다.
 - `notebooks/mimic_pna_uti.ipynb` — 데이터 확인 → 코호트 → 패혈증 분류 → 집단 요약 → 타이밍 → 매핑 → 사례 카드 → 결과 저장.
 - `data/` — 추출 CSV (아래 정의). **환자 단위 자료: PhysioNet 자격자만. 외부 공유 · 업로드 금지.**
@@ -21,7 +22,7 @@ K-MIMIC은 플랫폼 안에서 같은 컬럼 구조로 뽑아 같은 코드로 �
 5. 폐렴 · 요로감염 코드 둘 다 → 제외.
 6. 감염 의심 시각 `t_infection_suspected`: `culture_first` 배양 → 72h 안 전신 항생제 ⇒ 배양 시각 / `antibiotic_first` 항생제 → 24h 안 배양 ⇒ 항생제 시각 / 가장 이른 것.
 7. 지역사회 획득 `community_acquired` = 의심 시각 ≤ 48h. 8. 초기 요법 = `t_first_antibiotic`(의심 시각 이후 첫 항생제)부터 24h 안에 시작된 전신 항생제 성분 집합.
-9. 패혈증 라벨 셋: `sepsis_by_code`(ICD) · `sepsis_by_sofa`(간이 SOFA ≥ 2, 두 데이터 공용 코드) · `sepsis3`(mimic-code 공식 표, MIMIC 주 라벨). `sofa_window_covers_icu = 0`(약 18%)은 SOFA 창이 ICU 재실과 안 겹쳐 검사값만으로 점수가 난 환자 — 빼지 않고 플래그로 보고.
+9. 패혈증 라벨 셋: `sepsis_by_code`(ICD) · `sepsis_by_sofa`(간이 SOFA ≥ 2) · `sepsis3`(mimic-code 공식 표, MIMIC 주 라벨). `sofa_window_covers_icu = 0`(약 18%)은 SOFA 창이 ICU 재실과 안 겹쳐 검사값만으로 점수가 난 환자 — 빼지 않고 플래그로 보고.
 
 ## data/ 컬럼
 - `cohort.csv`: hashed_id, hospital, group(pneumonia/uti), age, sex, anchor_year_group, icd_version, ed_visit, admission_type, admission_location, first_icu_type, t_ed, t_admit, t_icu_in, t_icu_out, t_disch, icu_los_d, hosp_los_d, death_inhosp, t_death, has_antibiotic, has_culture, t_infection_suspected, suspicion_rule(culture_first/antibiotic_first), community_acquired, t_first_antibiotic, initial_regimen, n_initial_antibiotics, blood_culture_before_antibiotic, hours_suspicion_to_icu(양수 = ICU 입실이 나중), suspicion_before_icu, sofa_window_covers_icu, sepsis_by_code, septic_shock_by_code, viral_cocode, cystitis_code, dm, ckd, copd, bronchiectasis, hf, liver, cancer, immuno, pregnancy, uro_obstruction, alcohol, prior_admission_90d, prior_iv_abx_90d, prior_mrsa_1y, prior_pseudomonas_1y, mech_vent, t_vent_start, vasopressor, t_vaso_start, weight_kg
@@ -36,5 +37,5 @@ K-MIMIC은 플랫폼 안에서 같은 컬럼 구조로 뽑아 같은 코드로 �
 
 ## 다시 돌리기
 ```bash
-cd code && python3 extract_mimic_cohort.py --mimic /path/to/mimiciv/3.1 --out ../data && python3 build_notebook.py
+cd code && python3 extract_mimic_cohort.py --mimic /path/to/mimiciv/3.1 --out ../data && python3 build_notebook.py && python3 make_final_cards.py
 ```
