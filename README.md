@@ -2,15 +2,15 @@
 
 Korea Clinical Datathon 2026 · Team 5 · MIMIC-IV (US) and K-MIMIC (Korea)
 
-Does the **first empiric antibiotic regimen** given to adult ICU patients with community-acquired **pneumonia** or **urinary tract infection** follow national guidelines, and can an AI agent with retrieval-augmented generation (RAG) make and explain that judgement? Each admission becomes a leakage-free **case card**; a **rule engine** transcribed from the guideline tables judges it; an **LLM + RAG layer** explains the judgement with cited guideline passages; clinicians evaluated the RAG and adjudicate disagreements.
+Does the **first empiric antibiotic regimen** given to adult ICU patients with community-acquired **pneumonia** or **urinary tract infection** follow national guidelines, and can an AI agent with retrieval-augmented generation (RAG) make and explain that judgement? Each admission becomes a leakage-free **case card**; a **rule engine** transcribed from the guideline tables judges it; an **LLM + RAG layer** explains the judgement with cited guideline passages; clinicians scored the RAG on guideline questions; a clinician review of rule–LLM disagreements on 20 sample cases is the planned validation step.
 
-<p align="center"><img src="figures/fig4_pipeline_en.png" width="820" alt="Data pipeline"></p>
+<p align="center"><img src="figures/pipeline_en.png" width="820" alt="Data pipeline"></p>
 
 ## Design
 
 | | K-MIMIC (Korea, 7 hospitals) | MIMIC-IV v3.1 (BIDMC, US) |
 |---|---|---|
-| Guidelines for judgement | KDCA/KSAT CAP 2025 (K02) · UTI 2025 (K04) | ATS/IDSA CAP 2019 (M03) · IDSA cUTI 2025 (M07) |
+| Guidelines for judgement | KDCA/KSAT CAP (K02) · UTI (K04), 2025 edition | ATS/IDSA CAP 2019 (M03) · IDSA cUTI 2025 (M07) |
 | Common yardstick | WHO AWaRe 2025 (W01, W02) | same |
 | Sepsis label (stratification only) | ICD sepsis codes | Sepsis-3 (mimic-code) |
 | Where the data are processed | inside the KHDP platform; only aggregates leave | locally by a credentialed user |
@@ -23,7 +23,7 @@ Korean data are judged against Korean guidelines and US data against US guidelin
 
 **Judgement.** Set comparison of the regimen against the guideline row that matches the card (severity, MRSA/Pseudomonas risk, sepsis, route): recommended · alternative · missing agent · unexplained extra agent · different agents · justified deviation · not applicable · undeterminable. Unknown conditions are resolved by evaluating every candidate row; if the rows disagree the case is undeterminable, never guessed.
 
-<p align="center"><img src="figures/fig5_judgment_en.png" width="820" alt="Judgement workflow"></p>
+<p align="center"><img src="figures/judgment_en.png" width="820" alt="Judgement workflow"></p>
 
 ## Results
 
@@ -42,11 +42,11 @@ Non-adherence is dominated by empiric anti-MRSA and anti-pseudomonal coverage ad
 
 **K-MIMIC (7 hospitals; pneumonia 12,062 · UTI 2,895 admissions)**
 
-Most frequent antibiotics in pneumonia (share of prescriptions): piperacillin/tazobactam 20.0%, meropenem 12.8%, levofloxacin 9.4%, TMP-SMX 6.7%, ceftriaxone 4.9%, vancomycin 4.5%, teicoplanin 4.2%. Korean ICUs use teicoplanin alongside vancomycin, so glycopeptides are pooled in class comparisons. Guideline adherence on K-MIMIC is computed inside the KHDP platform with the kit in [`kmimic/`](kmimic/); patient-level files never leave the platform.
+Figures from the team presentation (`docs/`). Most frequent antibiotics in pneumonia (share of prescriptions): piperacillin/tazobactam 20.0%, meropenem 12.8%, levofloxacin 9.4%, TMP-SMX 6.7%, ceftriaxone 4.9%, vancomycin 4.5%, teicoplanin 4.2%. Korean ICUs use teicoplanin alongside vancomycin, so glycopeptides are pooled in class comparisons. Guideline adherence on K-MIMIC is computed inside the KHDP platform with the kit in [`kmimic/`](kmimic/); patient-level files never leave the platform.
 
 **RAG (7 guideline PDFs, BGE-M3 + FAISS, 9 retrieved chunks).** Two local generators were compared on 21 guideline questions with identical retrieval. The Korean medical model HARI-q3-8B beat Qwen3.5-9B on every automatic metric (cosine 0.747 vs 0.711, BERTScore 0.884 vs 0.879) and in clinician scoring (3 raters × 5 criteria, 1–5): 3.61 vs 3.33. Groundedness (citation accuracy) was the weakest criterion for both.
 
-**Agent.** Three functions: adherence report, guideline-based recommendation, similar-case prescriptions. Deployed as an app on khdp.ai ([`app/`](app/)): rule judgement, BM25 guideline retrieval with file/line citations, a dashboard built from the aggregate files, and an LLM judgement loop that compares the model's eight-value JSON verdict with the rule engine.
+**Agent.** Designed with three functions (adherence report, guideline-based recommendation, similar-case prescriptions); the adherence report is implemented as an app on khdp.ai ([`app/`](app/)): rule judgement, BM25 guideline retrieval with file/line citations, a dashboard built from the aggregate files, and an LLM judgement loop that compares the model's eight-value JSON verdict with the rule engine. The app runtime has no LLM endpoint, so the LLM step is a copy-paste loop through the platform chat. Demo video: [`app/Demo_version.mp4`](app/Demo_version.mp4).
 
 ## Repository
 
@@ -59,7 +59,7 @@ app/         app build request and in-app LLM prompt (khdp.ai Apps)
 docs/        presentation deck (PDF, PPTX)
 ```
 
-Run order (MIMIC): `mimic/code/extract_mimic_cohort.py --mimic <mimic-iv-3.1 dir> --out mimic/data` → `mimic/code/build_notebook.py` → `guideline/rule_judge/rule_judge_intl.py --icu-severe cards.jsonl verdicts.jsonl` → `kmimic/aware_table.py cards.jsonl`. Run order (K-MIMIC): [`kmimic/KMIMIC_EXTRACTION.md`](kmimic/KMIMIC_EXTRACTION.md). Everything is standard-library Python. The smoke test in `kmimic/test_data/` (3 synthetic patients) and the 8 synthetic cards in `guideline/rag_match/demo/` run without real data.
+Run order (MIMIC): `mimic/code/extract_mimic_cohort.py --mimic <mimic-iv-3.1 dir> --out mimic/data` → `mimic/code/build_notebook.py` → `mimic/code/make_final_cards.py` (case cards) → `guideline/rule_judge/rule_judge_intl.py --icu-severe cards_all.jsonl verdicts.jsonl` → `kmimic/aware_table.py cards.jsonl`. Run order (K-MIMIC): [`kmimic/KMIMIC_EXTRACTION.md`](kmimic/KMIMIC_EXTRACTION.md). Everything is standard-library Python. The smoke test in `kmimic/test_data/` (3 synthetic patients) and the 8 synthetic cards in `guideline/rag_match/demo/` run without real data.
 
 ## Data and licensing
 
