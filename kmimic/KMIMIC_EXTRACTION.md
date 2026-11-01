@@ -31,14 +31,14 @@ K-MIMIC 원천 테이블에서 SQL 3개로 CSV 3개를 만들고, 나머지(의�
 | 둘 다 | 폐렴 · 요로감염 코드가 둘 다 있으면 제외 |
 | 시간 0 | t0 = min(edregtime, admittime) = 병원 도착. 모든 `t_*` 는 t0 기준 **시간(h)**. 절대 날짜는 출력하지 않음 |
 | 전신 항생제 | `PRESCRIPTIONS.gsn LIKE 'J01%'`(gsn = ATC). gsn 이 비면 약품명 규칙(cef·cillin·penem·vanco·tazo…; 항암 ·항진균 ·외용 제외). 경구 vancomycin(A07AA) · 외용 경로 제외. **시각 = starttime**(EMAR 는 쓰지 않음: 001 · 005 · 009 charttime 이 0093~6280년으로 오염) |
-| 배양 | `MICROBIOLOGYEVENTS.charttime` = 채취, `storetime` = 보고. 창 = t0 −48h ~ 퇴원. **선별 검사는 배양이 아님**(직장 VRE/CRE, 비강 MRSA, stool screen, catheter tip, PCR, 항원) → `is_culture=0` |
+| 배양 | `MICROBIOLOGYEVENTS.charttime` = 채취, `storetime` = 보고. 창 = t0 −365일 ~ 퇴원(과거 분리균 계산용; 짝짓기는 derive 가 함). **선별 검사는 배양이 아님**(직장 VRE/CRE, 비강 MRSA, stool screen, catheter tip, PCR, 항원) → `is_culture=0` |
 | 감염 의심 시각 | (파이썬 derive) `culture_first`: 배양 → 72h 안 항생제 ⇒ 배양 시각 / `antibiotic_first`: 항생제 → 24h 안 배양 ⇒ 항생제 시각 / 가장 이른 것. 짝이 없으면 `--abx-only-suspicion` 으로 첫 항생제 시각을 씀(`antibiotic_only`, 민감도 코호트) |
 | 지역사회 획득 | 의심 시각 ≤ 48h. 넘으면 원내 감염으로 제외(수만 보고) |
 | 초기 요법 | 의심 시각 이후 첫 항생제(`t_first_antibiotic`)부터 **+24h 안에 시작한 성분 집합** |
 | 패혈증 라벨 | `sepsis_by_code` = A40x, A41x, R651 (KCD: R652/R653 은 비감염성). SOFA 는 계산하지 않음(MIMIC 은 sepsis3, 두 데이터 라벨을 맞추지 않기로 함) |
-| 과거력 | `prior_admission_90d`, `prior_iv_abx_90d`(그 입원의 정맥 J01), `prior_mrsa_1y`, `prior_pseudomonas_1y` |
-| 승압제 | PRESCRIPTIONS 의 ATC C01CA03/24/04/07 · H01BA01(norepinephrine · epinephrine · dopamine · dobutamine · vasopressin) 또는 약품명 → `vasopressor`, `t_vaso_start` |
-| 기계환기 | 기관별 ITEMID 가 달라 SQL 에 비워 둠(`__FILL_FROM_Q7__`). 채우지 않으면 NULL → 판정은 `--icu-severe`(ICU 입실 = 중증) 로 대체 |
+| 과거력 | `prior_admission_90d` 는 쿼리 1 이 낸다. `prior_iv_abx_90d` · `prior_mrsa_1y` · `prior_pseudomonas_1y` 는 파이썬 derive 가 antibiotics.csv(이전 입원 행 `hadm_is_cohort=0`, t0 −90일) · cultures.csv(`is_mrsa` · `is_pseudomonas`, t0 −365일)에서 계산한다 |
+| 승압제 | PRESCRIPTIONS 의 ATC C01CA03/24/04/07 · H01BA01(norepinephrine · epinephrine · dopamine · dobutamine · vasopressin) 또는 약품명. 쿼리 2 가 `is_vasopressor=1` 행으로 내보내고 derive 가 `vasopressor`, `t_vaso_start` 를 만든다 |
+| 기계환기 | 추출하지 않음(기관별 ITEMID 가 다름). 카드에서는 '모름' 이 되므로 중증도 판정은 `--icu-severe`(ICU 입실 = 중증) 로 한다 |
 | 하지 않는 것 | SOFA, 활력징후 · 검사값, 용량 검사, EMAR 투여 시각 |
 
 ---
@@ -53,7 +53,6 @@ K-MIMIC 원천 테이블에서 SQL 3개로 CSV 3개를 만들고, 나머지(의�
 | DIAGNOSES_ICD | hadm_id, icd_code (seq_num 은 안 씀) | 점 없는 코드, KCD 버전 혼재(202 만 ICD10CM). J16 은 데이터에 없음 |
 | PRESCRIPTIONS | hadm_id, pharmacy_id, starttime, stoptime, drug, gsn, route, dose_val_rx, dose_unit_rx, doses_per_24_hrs | gsn = ATC(202 는 0%). drug 는 상품명 중심 `Tazoperan 4.5g inj(Piperacillin/Tazobactam)` |
 | MICROBIOLOGYEVENTS | subject_id, micro_specimen_id, chartdate, charttime, storetime, spec_type_desc, test_name, org_name, ab_name, interpretation | 일부 데이터셋 정책상 `chartdate IS NOT NULL` 조건 필요. 검체명 한글 · 영문 혼용 |
-| PROCEDUREEVENTS | hadm_id, starttime, itemid | 기계환기 ITEMID 를 채울 때만 |
 
 ---
 
@@ -64,9 +63,9 @@ K-MIMIC 원천 테이블에서 SQL 3개로 CSV 3개를 만들고, 나머지(의�
 
 | 쿼리 | 저장 파일 | 한 행 | 핵심 컬럼 |
 |---|---|---|---|
-| 1 | `DATA/raw/cohort_003.csv` … | 입원 1건 | hashed_id, hospital, group, age, sex, anchor_year_group, ed_visit, first_icu_type, op_flag, t_ed, t_admit, t_icu_in, t_icu_out, t_disch, icu_los_d, hosp_los_d, death_inhosp, t_death, sepsis_by_code, viral_cocode, cystitis_code, 기저질환 11개, prior_* 4개, vasopressor, t_vaso_start, mech_vent, t_vent_start, **hadm_id, subject_id, stay_id** |
-| 2 | `DATA/raw/antibiotics_003.csv` … | 처방 1건 | hashed_id, hospital, drug_raw, atc, route, dose, dose_unit, doses_per_24h, t_start, t_stop, source |
-| 3 | `DATA/raw/cultures_003.csv` … | 검체 × 균 1건 | hashed_id, hospital, micro_specimen_id, spec_type, test_name, is_culture, t_collect, t_result, organism |
+| 1 | `DATA/raw/cohort_003.csv` … | 입원 1건 | hashed_id, hospital, group, age, sex, anchor_year_group, admission_type, admission_location, first_icu_type, op_flag, ed_visit, t_ed, t_admit, t_icu_in, t_icu_out, t_disch, icu_los_d, hosp_los_d, death_inhosp, t_death, viral_cocode, cystitis_code, sepsis_by_code, 기저질환 11개, prior_admission_90d, **hadm_id, subject_id, stay_id** |
+| 2 | `DATA/raw/antibiotics_003.csv` … | 처방 1건 (코호트 입원 + t0 −90일 내 이전 입원, 승압제 포함) | hashed_id, hospital, hadm_is_cohort(0 = 이전 입원 행), is_vasopressor, drug_raw, atc, route, dose, dose_unit, doses_per_24h, t_start, t_stop, source |
+| 3 | `DATA/raw/cultures_003.csv` … | 검체 × 균 1건 (t0 −365일 ~ 퇴원) | hashed_id, hospital, micro_specimen_id, spec_type, test_name, is_culture, t_collect, t_result, organism, is_mrsa, is_pseudomonas |
 
 기관별 파일을 이어 붙이고(헤더 한 번) `cohort.csv` 의 마지막 세 컬럼(hadm_id, subject_id, stay_id)을 `id_map.csv` 로 떼어 낸다:
 ```bash
@@ -86,7 +85,7 @@ f = [c for c in r[0] if c not in k[1:]]; w = csv.DictWriter(open('DATA/cohort.cs
 ```bash
 python3 analyze_kmimic_cohort.py derive --cohort DATA/cohort.csv --abx DATA/antibiotics.csv --cultures DATA/cultures.csv --out DATA/cohort_derived.csv
 ```
-출력: `cohort_derived.csv`(+ t_infection_suspected, suspicion_rule, community_acquired, t_first_antibiotic, initial_regimen, n_initial_antibiotics, has_antibiotic, has_culture) 와 화면에 **기관별 단계 n 표 · 집단 요약**(이것이 n수 표). 성분명은 같은 폴더의 `atc_to_ingredient.csv` 로 자동으로 붙는다.
+출력: `cohort_derived.csv`(+ t_infection_suspected, suspicion_rule, community_acquired, t_first_antibiotic, initial_regimen, n_initial_antibiotics, has_antibiotic, has_culture, 그리고 antibiotics · cultures 에서 계산한 prior_iv_abx_90d, prior_mrsa_1y, prior_pseudomonas_1y, vasopressor, t_vaso_start) 와 화면에 **기관별 단계 n 표 · 집단 요약**(이것이 n수 표). 이전 입원 행과 승압제 행은 요법 · 짝짓기에서 자동으로 빠진다. 성분명은 같은 폴더의 `atc_to_ingredient.csv` 로 붙는다.
 
 ### ③ 사례 카드
 ```bash

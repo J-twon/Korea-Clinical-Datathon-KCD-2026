@@ -1,9 +1,8 @@
 -- ============================================================================================================
 -- K-MIMIC 추출 SQL — 폐렴·요로감염 성인 첫 ICU 입원 코호트 (Korea Clinical Datathon 2026)
 -- 플랫폼의 K-MIMIC 은 기관별 데이터셋(kmimic-emr-001 … kmimic-emr-202)으로 나뉘어 있고 테이블 구조는 같다.
---   → 데이터셋 하나를 열고 아래 쿼리 3개를 그대로 실행, 결과를 기관별 CSV 로 저장. 작은 기관부터: 005 → 202 → 006 → 004 → 009 → 001 (003 은 완료). 기관별 CSV 를 이어 붙인다(KMIMIC_EXTRACTION.md ①).
+--   → 데이터셋 하나를 열고 아래 쿼리 3개를 그대로 실행, 결과를 기관별 CSV 로 저장한 뒤 이어 붙인다(KMIMIC_EXTRACTION.md ①).
 --   큰 테이블은 기관당 두 번만 읽는다: 쿼리 1 = 작은 테이블만(수 초), 쿼리 2 = PRESCRIPTIONS 1회, 쿼리 3 = MICROBIOLOGYEVENTS 1회. 과거력 · 승압제 플래그는 파이썬(derive)이 그 결과로 계산한다.
---   데모(시간 부족)일 때: 공통 블록 끝의 cohort0 정의를 아래 주석 줄로 바꾸면 최근 입원 300명만 뽑는다(스캔 자체는 줄지 않지만 조인 · 출력이 준다).
 -- 쿼리 3개는 각각 단독으로 실행된다(앞부분 공통 블록 [B1~B6] 이 세 번 반복됨):
 --   쿼리 1 → cohort_<기관>.csv      쿼리 2 → antibiotics_<기관>.csv      쿼리 3 → cultures_<기관>.csv
 -- 그다음은 파이썬: analyze_kmimic_cohort.py derive (의심 시각·초기 요법) → make_cards_min.py → rule_judge_kr.py.
@@ -85,7 +84,6 @@ sel AS (SELECT s.*, f.pna, f.pna_asp, f.viral_cocode, f.uti, f.cystitis_code, f.
                CASE WHEN f.pna = 1 AND f.pna_asp = 0 AND NOT (f.uti = 1 AND f.cauti = 0) THEN 'pneumonia'
                     WHEN f.uti = 1 AND f.cauti = 0 AND NOT (f.pna = 1 AND f.pna_asp = 0) THEN 'uti' END AS grp
         FROM adult s JOIN flags f ON f.src_hospital_id = s.hospital AND f.hadm_id = s.hadm_id),
--- 데모용(시간 부족 시): 아래 줄을 cohort0 AS (SELECT * FROM sel WHERE grp IS NOT NULL ORDER BY admittime DESC LIMIT 300) 로 바꾸면 최근 입원 300명만
 cohort0 AS (SELECT * FROM sel WHERE grp IS NOT NULL),
 -- [C1] 90일 내 이전 입원 (ADMISSIONS 만 사용). 정맥 항생제 · MRSA/녹농균 분리 · 승압제 플래그는 쿼리 2 · 3 의 결과로 파이썬(derive)이 계산한다 → 이 쿼리는 큰 테이블을 읽지 않는다
 prior_adm AS (SELECT DISTINCT c.hospital, c.hadm_id FROM cohort0 c
@@ -174,7 +172,6 @@ sel AS (SELECT s.*, f.pna, f.pna_asp, f.viral_cocode, f.uti, f.cystitis_code, f.
                CASE WHEN f.pna = 1 AND f.pna_asp = 0 AND NOT (f.uti = 1 AND f.cauti = 0) THEN 'pneumonia'
                     WHEN f.uti = 1 AND f.cauti = 0 AND NOT (f.pna = 1 AND f.pna_asp = 0) THEN 'uti' END AS grp
         FROM adult s JOIN flags f ON f.src_hospital_id = s.hospital AND f.hadm_id = s.hadm_id),
--- 데모용(시간 부족 시): 아래 줄을 cohort0 AS (SELECT * FROM sel WHERE grp IS NOT NULL ORDER BY admittime DESC LIMIT 300) 로 바꾸면 최근 입원 300명만
 cohort0 AS (SELECT * FROM sel WHERE grp IS NOT NULL),
 -- [A1] PRESCRIPTIONS 를 한 번만 읽는다: 코호트 환자(subject 기준)의 t0 −90일 ~ 퇴원 사이 처방 중 전신 항생제(GSN J01, 없으면 약품명) 또는 승압제(ATC C01CA03/24/04/07 · H01BA01, 또는 약품명).
 --      이전 입원의 행(hadm_is_cohort=0)은 '90일 내 정맥 항생제' 계산용, 승압제 행(is_vasopressor=1)은 승압제 플래그용 — 둘 다 파이썬(derive)이 처리하고 요법 계산에서는 자동 제외된다.
@@ -262,7 +259,6 @@ sel AS (SELECT s.*, f.pna, f.pna_asp, f.viral_cocode, f.uti, f.cystitis_code, f.
                CASE WHEN f.pna = 1 AND f.pna_asp = 0 AND NOT (f.uti = 1 AND f.cauti = 0) THEN 'pneumonia'
                     WHEN f.uti = 1 AND f.cauti = 0 AND NOT (f.pna = 1 AND f.pna_asp = 0) THEN 'uti' END AS grp
         FROM adult s JOIN flags f ON f.src_hospital_id = s.hospital AND f.hadm_id = s.hadm_id),
--- 데모용(시간 부족 시): 아래 줄을 cohort0 AS (SELECT * FROM sel WHERE grp IS NOT NULL ORDER BY admittime DESC LIMIT 300) 로 바꾸면 최근 입원 300명만
 cohort0 AS (SELECT * FROM sel WHERE grp IS NOT NULL),
 -- [M1] MICROBIOLOGYEVENTS 를 한 번만 읽는다: 코호트 환자의 t0 −365일 ~ 퇴원 사이 검체(채취 = charttime, 보고 = storetime). 검체×균 단위로 접고(항생제 감수성 행 → is_mrsa 플래그로 압축)
 --      −365일 ~ −48h 의 행은 '1년 내 MRSA · 녹농균 분리' 계산용(파이썬 derive). 의심 시각 짝짓기 · 카드에는 −48h 이후 행만 쓴다(파이썬이 거른다).
