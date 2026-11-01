@@ -2,7 +2,7 @@
 
 Korea Clinical Datathon 2026 · Team 5 · MIMIC-IV (US) and K-MIMIC (Korea)
 
-Does the **first empiric antibiotic regimen** given to adult ICU patients with community-acquired **pneumonia** or **urinary tract infection** follow national guidelines, and can an AI agent with retrieval-augmented generation (RAG) make and explain that judgement? Each admission becomes a leakage-free **case card**; a **rule engine** transcribed from the guideline tables judges it; an **LLM + RAG layer** explains the judgement with cited guideline passages; clinicians scored the RAG on guideline questions; a clinician review of rule–LLM disagreements on 20 sample cases is the planned validation step.
+Does the **first empiric antibiotic regimen** given to adult ICU patients with community-acquired **pneumonia** or **urinary tract infection** follow national guidelines, and can an AI agent with retrieval-augmented generation (RAG) make and explain that judgement? Each admission becomes a leakage-free **case card**; a **rule engine** transcribed from the guideline tables judges it; an **LLM + RAG layer** explains the judgement with cited guideline passages. Three clinicians scored the RAG on guideline questions. A clinician review of rule–LLM disagreements on 20 sample cases is planned as the next validation step.
 
 <p align="center"><img src="figures/pipeline_en.png" width="820" alt="Data pipeline"></p>
 
@@ -21,7 +21,7 @@ Korean data are judged against Korean guidelines and US data against US guidelin
 
 **Case card.** Hashed ID, times relative to the first antibiotic order (T+0), and only values *reported* before T+0 (vitals, labs, specimen types, history, comorbidities, regimen). Discharge diagnoses, death, culture results and the sepsis label are withheld, so the rule engine, the LLM and the clinicians see the same information.
 
-**Judgement.** Set comparison of the regimen against the guideline row that matches the card (severity, MRSA/Pseudomonas risk, sepsis, route): recommended · alternative · missing agent · unexplained extra agent · different agents · justified deviation · not applicable · undeterminable. Unknown conditions are resolved by evaluating every candidate row; if the rows disagree the case is undeterminable, never guessed.
+**Judgement.** Set comparison of the regimen against the guideline row that matches the card (severity, MRSA/Pseudomonas risk, sepsis, route): recommended · alternative · missing agent · unexplained extra agent · different agents · justified deviation · not applicable · undeterminable. Unknown conditions are resolved by evaluating every candidate row; if the rows disagree the case is marked undeterminable rather than guessed.
 
 <p align="center"><img src="figures/judgment_en.png" width="820" alt="Judgement workflow"></p>
 
@@ -42,11 +42,11 @@ Non-adherence is dominated by empiric anti-MRSA and anti-pseudomonal coverage ad
 
 **K-MIMIC (7 hospitals; pneumonia 12,062 · UTI 2,895 admissions)**
 
-Figures from the team presentation (`docs/`). Most frequent antibiotics in pneumonia (share of prescriptions): piperacillin/tazobactam 20.0%, meropenem 12.8%, levofloxacin 9.4%, TMP-SMX 6.7%, ceftriaxone 4.9%, vancomycin 4.5%, teicoplanin 4.2%. Korean ICUs use teicoplanin alongside vancomycin, so glycopeptides are pooled in class comparisons. Guideline adherence on K-MIMIC is computed inside the KHDP platform with the kit in [`kmimic/`](kmimic/); patient-level files never leave the platform.
+Numbers are from the team presentation (`docs/`). Most frequent antibiotics in pneumonia (share of prescriptions): piperacillin/tazobactam 20.0%, meropenem 12.8%, levofloxacin 9.4%, TMP-SMX 6.7%, ceftriaxone 4.9%, vancomycin 4.5%, teicoplanin 4.2%. In these hospitals teicoplanin is used alongside vancomycin, so glycopeptides are pooled in class comparisons. Guideline adherence on K-MIMIC is computed inside the KHDP platform with the kit in [`kmimic/`](kmimic/); patient-level files never leave the platform.
 
-**RAG (7 guideline PDFs, BGE-M3 + FAISS, 9 retrieved chunks).** Two local generators were compared on 21 guideline questions with identical retrieval. The Korean medical model HARI-q3-8B beat Qwen3.5-9B on every automatic metric (cosine 0.747 vs 0.711, BERTScore 0.884 vs 0.879) and in clinician scoring (3 raters × 5 criteria, 1–5): 3.61 vs 3.33. Groundedness (citation accuracy) was the weakest criterion for both.
+**RAG (7 guideline PDFs, BGE-M3 + FAISS, 9 retrieved chunks).** Two local generators were compared on 21 guideline questions with identical retrieval. The Korean medical model HARI-q3-8B scored higher than Qwen3.5-9B on all automatic metrics (cosine 0.747 vs 0.711, BERTScore 0.884 vs 0.879) and in clinician scoring (3 raters × 5 criteria, 1–5): 3.61 vs 3.33. Groundedness (citation accuracy) was the weakest criterion for both.
 
-**Agent.** Designed with three functions (adherence report, guideline-based recommendation, similar-case prescriptions); the adherence report is implemented as an app on khdp.ai ([`app/`](app/)): rule judgement, BM25 guideline retrieval with file/line citations, a dashboard built from the aggregate files, and an LLM judgement loop that compares the model's eight-value JSON verdict with the rule engine. The app runtime has no LLM endpoint, so the LLM step is a copy-paste loop through the platform chat. Demo video: [`app/Demo_version.mp4`](app/Demo_version.mp4).
+**Agent.** Designed with three functions (adherence report, guideline-based recommendation, similar-case prescriptions); the adherence report is implemented as an app on khdp.ai ([`app/`](app/)): rule judgement, BM25 guideline retrieval with file/line citations, a dashboard built from the aggregate files, and an LLM judgement loop that compares the model's eight-value JSON verdict with the rule engine. The app runtime has no LLM endpoint, so the LLM step is run manually: the app composes the prompt, the user submits it to the platform chat and pastes the JSON verdict back. Demo video: [`app/Demo_version.mp4`](app/Demo_version.mp4).
 
 ## Repository
 
