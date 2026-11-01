@@ -5,6 +5,7 @@
 | demo_cards.jsonl | 카드 8건 (폐렴 5 · 요로감염 3). K-MIMIC 최소 카드와 같은 형식(활력 · 검사 없음) |
 | demo_queries.jsonl | 카드별 조건 요약(features) · 지침별 검색 질의(K02/M03/W01 또는 K04/M07/W01) · LLM 판정 프롬프트(prompt) |
 | demo_rule_verdicts_kr.jsonl | 국내 규칙 판정기의 기대 판정 (`--icu-severe --class-equiv`) |
+| demo_rule_verdicts_intl.jsonl | 해외 규칙 판정기의 기대 판정 (`--icu-severe`) |
 
 기대 판정: demo01 준수(추천) · demo02 비준수(과잉, teicoplanin 추가) · demo03 준수(대안, 녹농균 위험 pip/tazo + levofloxacin) · demo04 비준수(누락, MRSA · 녹농균 이력인데 azithromycin 없음) · demo05 준수(추천) · demo06 비준수(과잉, 패혈증 meropenem + vancomycin) · demo07 준수(추천, 경구 ciprofloxacin) · demo08 해당 없음(cefazolin 단독).
 
