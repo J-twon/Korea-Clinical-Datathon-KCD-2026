@@ -64,7 +64,7 @@ Run order (MIMIC): `mimic/code/extract_mimic_cohort.py --mimic <mimic-iv-3.1 dir
 ## Data and licensing
 
 - **No patient-level data are in this repository.** MIMIC-IV derivatives (extracted CSVs, case cards, verdict files, notebook outputs) are available only to PhysioNet-credentialed users. K-MIMIC data stay inside the KHDP platform.
-- **Guideline PDFs and their text extracts are not redistributed.** Obtain them from the issuers (KDCA/KSAT, ATS/IDSA, IDSA, WHO) and run `pdftotext -layout` to the file names expected in `guideline/text/`; the rule engines cite table and line positions of those files.
+- **Guideline PDFs and their text are not redistributed**, except the WHO AWaRe documents (CC BY-NC-SA 3.0 IGO). Obtain the Korean and US guidelines from the issuers (KDCA/KSAT, ATS/IDSA, IDSA) and run `pdftotext -layout` to the file names expected in `guideline/text/`; the rule engines cite table and line positions of those files. The RAG vector store in `guideline/vectorstore/` keeps embeddings and page references for every guideline but chunk text only for the WHO documents (see its README).
 - Clinician evaluation sheets are private; scores are reported in aggregate.
 - The WHO AWaRe mapping in `kmimic/aware_2025.csv` follows the 2025 WHO list, with route-dependent entries for fosfomycin and minocycline.
 
